@@ -1,9 +1,9 @@
-import Home from '../components/home'
+import Movie from '../components/movie'
 
 let routes = [
     {
         path: '/',
-        component: Home,
+        component: Movie,
         exact: true
     }
 ]
