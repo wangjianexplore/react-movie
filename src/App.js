@@ -3,6 +3,7 @@ import './App.css';
 import store from './store';
 import { Provider } from 'react-redux';
 import routes from './router';
+import './assets/iconfont/style.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {

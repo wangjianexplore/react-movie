@@ -1,10 +1,14 @@
 .header_main {
-    height: 1rem;
+    height: 50px;
     width: 100%;
     background-color: #e54847;
     color: #fff;
-    line-height: 1rem;
-    font-size: .36rem;
+    line-height: 50px;
+    font-size: 18px;
     text-align: center;
     font-weight: 400;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
 }
