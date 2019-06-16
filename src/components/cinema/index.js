@@ -1,279 +1,247 @@
-import React from 'react';
-import Header from '../header';
-import Footer from '../footer';
-import './cinema.scss';
-import { Tabs, Menu } from 'antd-mobile';
+import React from "react";
+import Header from "../header";
+import Footer from "../footer";
+import CinemaList from '../cinemaList';
+import "./cinema.scss";
+import { Tabs, Flex, Button } from "antd-mobile";
 
 class Cinema extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            linestyle: {
-                border: '1px #ef4238 solid',
-                bottom: '-1px',
-                backgroundColor: '#ef4238'
-            }
-        }
-    }
-    render() {
-        const tabs = [
-            { title: '商区' },
-            { title: '地铁站' }
-        ];
-        const initData = [
-            {
-                value: '1',
-                label: 'Food',
-                children: [
-                    {
-                        label: 'All Foods',
-                        value: '1',
-                        disabled: false,
-                    },
-                    {
-                        label: 'Chinese Food',
-                        value: '2',
-                    }, {
-                        label: 'Hot Pot',
-                        value: '3',
-                    }, {
-                        label: 'Buffet',
-                        value: '4',
-                    }, {
-                        label: 'Fast Food',
-                        value: '5',
-                    }, {
-                        label: 'Snack',
-                        value: '6',
-                    }, {
-                        label: 'Bread',
-                        value: '7',
-                    }, {
-                        label: 'Fruit',
-                        value: '8',
-                    }, {
-                        label: 'Noodle',
-                        value: '9',
-                    }, {
-                        label: 'Leisure Food',
-                        value: '10',
-                    }, {
-                        label: 'Leisure Food',
-                        value: '11',
-                    }, {
-                        label: 'Leisure Food',
-                        value: '12',
-                    }, {
-                        label: 'Leisure Food',
-                        value: '13',
-                    }, {
-                        label: 'Leisure Food',
-                        value: '14',
-                    }, {
-                        label: 'Leisure Food',
-                        value: '15',
-                    }, {
-                        label: 'Leisure Food',
-                        value: '16',
-                    }],
-            }, {
-                value: '2',
-                label: 'Supermarket',
-                children: [
-                    {
-                        label: 'All Supermarkets',
-                        value: '1',
-                    }, {
-                        label: 'Supermarket',
-                        value: '2',
-                        disabled: true,
-                    }, {
-                        label: 'C-Store',
-                        value: '3',
-                    }, {
-                        label: 'Personal Care',
-                        value: '4',
-                    }],
-            },
-            {
-                value: '3',
-                label: 'Extra',
-                isLeaf: true,
-                children: [
-                    {
-                        label: 'you can not see',
-                        value: '1',
-                    },
-                ],
-            },
-        ];
-        return (
-            <div className="cinema">
-                <Header title="影院" />
-                <div className="content">
-                    <div className="top">
-                        <div className="city">
-                            <span className="ellipsis city-name">上海</span>
-                            <i className="city-entry-arrow"></i>
-                        </div>
-                        <div className="search">
-                            <span className="iconfont icon-fangdajing"></span>
-                            搜影院
-                        </div>
-                    </div>
-                    <div className="wrap">
-                        <div className="tab">
-                            <div className="item">全城<span className="city-entry-arrow"></span></div>
-                            <div className="item">品牌<span className="city-entry-arrow"></span></div>
-                            <div className="item">特色<span className="city-entry-arrow"></span></div>
-                            <Tabs tabs={tabs} tabBarInactiveTextColor={'#666'} tabBarActiveTextColor={'#ef4238'} tabBarUnderlineStyle={this.state.linestyle} initialPage={0} animated={false} useOnPan={false}>
-                                <div className="menu_main">
-                                    <Menu
-                                        className="foo-menu"
-                                        data={initData}
-                                        value={['1', '3']}
-                                        height={document.documentElement.clientHeight * 0.6}
-                                    />
-                                </div>
-                                <div>
-                                    Content of second tab
-                                </div>
-                            </Tabs>
-                        </div>
-                    </div>
-                    <div className="infolist">
-                        <div className="listitem">
-                            <div className="item_wrap">
-                                <div className="title">
-                                    <span>大光明丽星VIP影城（博山路店）</span>
-                                    <span className="price">37</span>
-                                    <span className="yuan">元</span>
-                                </div>
-                                <div className="location">
-                                    <div className="loca_l ellipsis">浦东新区博山东路88号4层01号</div>
-                                    <div className="loca_r">1.4km</div>
-                                </div>
-                                <div className="label">
-                                    <div className="allowRefund">退</div>
-                                    <div className="endorse">改签</div>
-                                    <div className="snack">小吃</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="listitem">
-                            <div className="item_wrap">
-                                <div className="title">
-                                    <span>大光明丽星VIP影城（博山路店）</span>
-                                    <span className="price">37</span>
-                                    <span className="yuan">元</span>
-                                </div>
-                                <div className="location">
-                                    <div className="loca_l ellipsis">浦东新区博山东路88号4层01号</div>
-                                    <div className="loca_r">1.4km</div>
-                                </div>
-                                <div className="label">
-                                    <div className="allowRefund">退</div>
-                                    <div className="endorse">改签</div>
-                                    <div className="snack">小吃</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="listitem">
-                            <div className="item_wrap">
-                                <div className="title">
-                                    <span>大光明丽星VIP影城（博山路店）</span>
-                                    <span className="price">37</span>
-                                    <span className="yuan">元</span>
-                                </div>
-                                <div className="location">
-                                    <div className="loca_l ellipsis">浦东新区博山东路88号4层01号</div>
-                                    <div className="loca_r">1.4km</div>
-                                </div>
-                                <div className="label">
-                                    <div className="allowRefund">退</div>
-                                    <div className="endorse">改签</div>
-                                    <div className="snack">小吃</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="listitem">
-                            <div className="item_wrap">
-                                <div className="title">
-                                    <span>大光明丽星VIP影城（博山路店）</span>
-                                    <span className="price">37</span>
-                                    <span className="yuan">元</span>
-                                </div>
-                                <div className="location">
-                                    <div className="loca_l ellipsis">浦东新区博山东路88号4层01号</div>
-                                    <div className="loca_r">1.4km</div>
-                                </div>
-                                <div className="label">
-                                    <div className="allowRefund">退</div>
-                                    <div className="endorse">改签</div>
-                                    <div className="snack">小吃</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="listitem">
-                            <div className="item_wrap">
-                                <div className="title">
-                                    <span>大光明丽星VIP影城（博山路店）</span>
-                                    <span className="price">37</span>
-                                    <span className="yuan">元</span>
-                                </div>
-                                <div className="location">
-                                    <div className="loca_l ellipsis">浦东新区博山东路88号4层01号</div>
-                                    <div className="loca_r">1.4km</div>
-                                </div>
-                                <div className="label">
-                                    <div className="allowRefund">退</div>
-                                    <div className="endorse">改签</div>
-                                    <div className="snack">小吃</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="listitem">
-                            <div className="item_wrap">
-                                <div className="title">
-                                    <span>大光明丽星VIP影城（博山路店）</span>
-                                    <span className="price">37</span>
-                                    <span className="yuan">元</span>
-                                </div>
-                                <div className="location">
-                                    <div className="loca_l ellipsis">浦东新区博山东路88号4层01号</div>
-                                    <div className="loca_r">1.4km</div>
-                                </div>
-                                <div className="label">
-                                    <div className="allowRefund">退</div>
-                                    <div className="endorse">改签</div>
-                                    <div className="snack">小吃</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="listitem">
-                            <div className="item_wrap">
-                                <div className="title">
-                                    <span>大光明丽星VIP影城（博山路店）</span>
-                                    <span className="price">37</span>
-                                    <span className="yuan">元</span>
-                                </div>
-                                <div className="location">
-                                    <div className="loca_l ellipsis">浦东新区博山东路88号4层01号</div>
-                                    <div className="loca_r">1.4km</div>
-                                </div>
-                                <div className="label">
-                                    <div className="allowRefund">退</div>
-                                    <div className="endorse">改签</div>
-                                    <div className="snack">小吃</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <Footer num="1" />
+  constructor(props) {
+    super(props);
+    this.state = {
+      linestyle: {
+        border: "1px #ef4238 solid",
+        bottom: "-1px",
+        backgroundColor: "#ef4238"
+      },
+      allcityflag: false,
+      brandflag: false,
+      featureflag: false,
+      showNum: 0
+    };
+  }
+  render() {
+    const tabs = [{ title: "商区" }, { title: "地铁站" }];
+    let allcity = '',
+      brand = '',
+      feature = '';
+    if (this.state.allcityflag && this.state.showNum === 1) {
+      allcity = <div className="allcity">
+        <Tabs
+          tabs={tabs}
+          tabBarInactiveTextColor={"#666"}
+          tabBarActiveTextColor={"#ef4238"}
+          tabBarUnderlineStyle={this.state.linestyle}
+          initialPage={0}
+          animated={false}
+          useOnPan={false}
+          className="tab_cinema"
+        >
+          <div className="menu_main">
+            <div className="menu_left">
+              <div className="menu_item menu_item_active">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
+              <div className="menu_item">浦东新区</div>
             </div>
-        );
+            <div className="menu_right">
+              <div className="menu_item_r">全部</div>
+              <div className="menu_item_r">世博园</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+              <div className="menu_item_r">迪士尼</div>
+            </div>
+          </div>
+          <div className="menu_main">123</div>
+        </Tabs>
+      </div>
     }
+    if (this.state.brandflag && this.state.showNum === 2) {
+      brand = <div className="brand">
+        <Flex>
+          <Flex.Item>全部</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+        <Flex>
+          <Flex.Item>万达影城</Flex.Item>
+          <Flex.Item>60</Flex.Item>
+        </Flex>
+      </div>
+    }
+    if (this.state.featureflag && this.state.showNum === 3) {
+      feature = <div className="feature">
+        <div className="fea_main">
+          <Flex>特色功能</Flex>
+          <Flex>
+            <Flex.Item>全部</Flex.Item>
+            <Flex.Item>会员卡</Flex.Item>
+            <Flex.Item>可改签</Flex.Item>
+            <Flex.Item>可退票</Flex.Item>
+          </Flex>
+          <Flex>特殊厅</Flex>
+          <Flex wrap="wrap">
+            <Flex.Item>全部</Flex.Item>
+            <Flex.Item>会员卡</Flex.Item>
+            <Flex.Item>可改签</Flex.Item>
+            <Flex.Item>可退票</Flex.Item>
+            <Flex.Item>全部</Flex.Item>
+            <Flex.Item>会员卡</Flex.Item>
+            <Flex.Item>可改签</Flex.Item>
+            <Flex.Item>可退票</Flex.Item>
+            <Flex.Item>全部</Flex.Item>
+            <Flex.Item>会员卡</Flex.Item>
+            <Flex.Item>可改签</Flex.Item>
+            <Flex.Item>可退票</Flex.Item>
+            <Flex.Item>全部</Flex.Item>
+            <Flex.Item>会员卡</Flex.Item>
+            <Flex.Item>可改签</Flex.Item>
+            <Flex.Item>可退票</Flex.Item>
+          </Flex>
+        </div>
+        <Flex className="fea_btn" justify="between">
+          <Flex.Item><Button>重置</Button></Flex.Item>
+          <Flex.Item><Button className="sure">确定</Button></Flex.Item>
+        </Flex>
+      </div>
+    }
+    return (
+      <div className="cinema">
+        <Header title="影院" />
+        <div className="content">
+          <div className="top">
+            <div className="city">
+              <span className="ellipsis city-name">上海</span>
+              <i className="city-entry-arrow" />
+            </div>
+            <div className="search">
+              <span className="iconfont icon-fangdajing" />
+              搜影院
+            </div>
+          </div>
+          <div className="wrap">
+            <div className="tab">
+              <div className="item" onClick={() => { this.setState((state) => ({ allcityflag: !state.allcityflag, brandflag: false, featureflag: false, showNum: 1 })) }}>
+                全城
+                <span className="city-entry-arrow" />
+              </div>
+              <div className="item" onClick={() => { this.setState((state) => ({ allcityflag: false, brandflag: !state.brandflag, featureflag: false, showNum: 2 })) }}>
+                品牌
+                <span className="city-entry-arrow" />
+              </div>
+              <div className="item" onClick={() => { this.setState((state) => ({ allcityflag: false, brandflag: false, featureflag: !state.featureflag, showNum: 3 })) }}>
+                特色
+                <span className="city-entry-arrow" />
+              </div>
+            </div>
+            {allcity}
+            {brand}
+            {feature}
+          </div>
+          {
+            (this.state.allcityflag || this.state.brandflag || this.state.featureflag) && <div className="blacker" onClick={() => { this.setState(() => ({ allcityflag: false, brandflag: false, featureflag: false })) }}></div>
+          }
+          <CinemaList />
+        </div>
+        <Footer num="1" />
+      </div>
+    );
+  }
 }
 
 export default Cinema;

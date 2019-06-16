@@ -1,0 +1,70 @@
+.infolist {
+    background-color: #fff;
+    margin-top: 135px;
+    padding-bottom: 48px;
+
+    .listitem {
+        padding: 13px 15px 13px 0;
+        margin-left: 15px;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid #e8e8e8;
+
+        .title {
+            line-height: 23px;
+            font-size: 16px;
+            color: #000;
+        }
+
+        .price {
+            color: #f03d37;
+            font-size: 18px;
+        }
+
+        .yuan {
+            font-size: 11px;
+            color: #f03d37;
+            margin-left: 3px;
+        }
+    }
+
+    .location {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: #666;
+        margin-top: 6px;
+    }
+
+    .label {
+        height: 17px;
+        line-height: 17px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        overflow: hidden;
+        font-size: 0;
+        flex-shrink: 0;
+
+        div {
+            position: relative;
+            display: inline-block;
+            padding: 0 3px;
+            height: 15px;
+            line-height: 15px;
+            border-radius: 2px;
+            font-size: 9px;
+            margin-left: 5px;
+        }
+
+        .allowRefund,
+        .endorse {
+            color: #589daf;
+            border: 1px solid #589daf;
+        }
+
+        .snack {
+            color: #f90;
+            border: 1px solid #f90;
+        }
+    }
+}
