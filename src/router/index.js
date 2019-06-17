@@ -1,5 +1,6 @@
 import Movie from '../components/movie';
 import Cinema from '../components/cinema';
+import MovieCinema from '../components/movieCinema';
 
 let routes = [
     {
@@ -10,6 +11,10 @@ let routes = [
     {
         path: '/cinema',
         component: Cinema
+    },
+    {
+        path: '/movieCinema',
+        component: MovieCinema
     }
 ]
 
