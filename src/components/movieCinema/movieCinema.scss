@@ -1,129 +1,164 @@
-.mc_main {
-    margin-top: 50px;
-}
+.movieCinema {
 
-.movie-detail {
-    height: 188px;
-    position: relative;
-    cursor: pointer;
+    .movie-detail {
+        height: 188px;
+        position: relative;
+        cursor: pointer;
 
-    .movie-filter {
-        position: absolute;
-        z-index: -1;
-        width: 100%;
-        height: 100%;
-        background-color: #333;
-    }
-
-    .poster-bg {
-        background-image: url(../../assets/images/movie.jpg);
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        overflow: hidden;
-        position: absolute;
-        -webkit-filter: blur(1.2rem);
-        filter: blur(1.2rem);
-        background-size: cover;
-        background-repeat: no-repeat;
-        opacity: .55;
-    }
-
-    .mc_detail {
-        height: 150px;
-        padding: 19px 30px 19px 15px;
-        display: flex;
-
-        .poster_img {
-            width: 110px;
-            height: 150px;
-            box-sizing: border-box;
+        .movie-filter {
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
         }
 
-        .mc_content {
-            overflow-x: hidden;
-            margin-left: 12.5px;
-            line-height: 1;
-            color: #fff;
-            flex: 1;
-        }
-
-        .title {
-            font-size: 20px;
-            margin-top: 2px;
-            font-weight: 700;
+        .poster-bg {
+            background-image: url(../../assets/images/movie.jpg);
+            width: 100%;
+            height: 100%;
+            z-index: -1;
             overflow: hidden;
+            position: absolute;
+            -webkit-filter: blur(1.2rem);
+            filter: blur(1.2rem);
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: .55;
         }
 
-        .title-en-name {
-            margin-top: 10px;
-            font-size: 12px;
-            color: #fff;
-            opacity: .8;
-        }
-
-        .score {
-            font-size: 18px;
-            font-weight: 700;
-            color: #fc0;
-            margin-top: 11px;
-        }
-
-        .snum {
-            margin-top: 10px;
-            font-size: 12px;
-            color: #fff;
-            opacity: .8;
-            padding-left: 5px;
-        }
-
-        .type {
-            margin-top: 10px;
-            font-size: 12px;
-            color: #fff;
-            opacity: .8;
+        .mc_detail {
+            height: 150px;
+            padding: 19px 30px 19px 15px;
             display: flex;
+
+            .poster_img {
+                width: 110px;
+                height: 150px;
+                box-sizing: border-box;
+            }
+
+            .mc_content {
+                overflow-x: hidden;
+                margin-left: 12.5px;
+                line-height: 1;
+                color: #fff;
+                flex: 1;
+            }
+
+            .title {
+                font-size: 20px;
+                margin-top: 2px;
+                font-weight: 700;
+                overflow: hidden;
+            }
+
+            .title-en-name {
+                margin-top: 10px;
+                font-size: 12px;
+                color: #fff;
+                opacity: .8;
+            }
+
+            .score {
+                font-size: 18px;
+                font-weight: 700;
+                color: #fc0;
+                margin-top: 11px;
+            }
+
+            .snum {
+                margin-top: 10px;
+                font-size: 12px;
+                color: #fff;
+                opacity: .8;
+                padding-left: 5px;
+            }
+
+            .type {
+                margin-top: 10px;
+                font-size: 12px;
+                color: #fff;
+                opacity: .8;
+                display: flex;
+            }
+
+            .type-group {
+                display: inline-block;
+                width: 42px;
+                opacity: .85;
+                padding-left: 5px;
+            }
+
+            .type_img {
+                width: 42px;
+            }
         }
 
-        .type-group {
-            display: inline-block;
-            width: 42px;
-            opacity: .85;
-            padding-left: 5px;
-        }
-
-        .type_img {
-            width: 42px;
+        .icon-fanhui-copy-copy {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            color: #999;
+            font-size: 24px;
+            margin-top: -14px;
         }
     }
 
-    .icon-fanhui-copy-copy {
-        position: absolute;
-        top: 50%;
-        right: 20px;
-        color: #999;
-        font-size: 24px;
-        margin-top: -14px;
-    }
-}
+    .showDays {
+        background-color: #fff;
 
-.showDays {
-    background-color: #fff;
-    .am-flexbox {
-        overflow: scroll;
+        .am-flexbox {
+            overflow: scroll;
 
-        &::-webkit-scrollbar {
-            display: none;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        .am-flexbox-item {
+            width: 115px;
+            line-height: 43px;
+            margin-left: 4.5px;
+            font-size: 14px;
+            text-align: center;
+            color: #666;
+            flex: none;
+        }
+
+        .active_item {
+            border-bottom: 2px solid #f03d37;
+            color: #f03d37;
         }
     }
 
-    .am-flexbox-item {
-        width: 115px;
-        line-height: 43px;
-        margin-left: 4.5px;
-        font-size: 14px;
-        text-align: center;
-        color: #666;
-        flex: none;
+    .showDays_focus {
+        position: fixed;
+        top: 50px;
+        z-index: 101;
+    }
+
+    .wrap {
+        position: relative;
+        top: 0;
+    }
+
+    .infolist {
+        margin-top: 0;
+    }
+
+    .mc_sel {
+        position: fixed;
+        width: 100%;
+        top: 93px;
+        z-index: 100;
+        border-top: 1px solid #999;
+    }
+    .fixedClass {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
     }
 }

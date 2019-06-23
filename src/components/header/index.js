@@ -10,7 +10,7 @@ class Header extends React.Component {
     }
     render() {
         return (
-            <div className="header_main">{this.props.title || '电影'}</div>
+            <div className={`header_main ${this.props.position === 'relative' ? 'header_relative' : 'header_fixed'}`}>{this.props.title || '电影'}</div>
         );
     }
 }

@@ -18,7 +18,6 @@ class Home extends React.Component {
         }
     }
     componentDidMount() {
-        // console.log(this.props);
     }
     render() {
         const tabs = [
@@ -36,7 +35,7 @@ class Home extends React.Component {
                     <div className="search-icon"></div>
                     <Tabs tabs={tabs} initialPage={0} animated={false} swipeable={false} useOnPan={false} tabBarInactiveTextColor={'#666'} tabBarActiveTextColor={'#ef4238'} tabBarUnderlineStyle={this.state.linestyle} onTabClick={this.lineHandle}>
                         <div className="being">
-                            <div className="list">
+                            <div className="list" onClick={()=>{this.props.history.push('/movieCinema')}}>
                                 <img src={movieimg} className="leftimg" alt=""/>
                                 <div className="list_r">
                                     <div className="col">

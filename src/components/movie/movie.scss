@@ -160,9 +160,12 @@
             }
         }
         .topimg {
-            height: 191px;
-            overflow-x: auto;
+            overflow-x: scroll;
+            overflow-y: hidden;
             white-space: nowrap;
+            &::-webkit-scrollbar {
+                display: none;
+            }
         }
         .rightimg {
             width: 85px;

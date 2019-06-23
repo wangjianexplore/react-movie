@@ -7,8 +7,13 @@
     font-size: 18px;
     text-align: center;
     font-weight: 400;
+    z-index: 99;
+}
+.header_fixed {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 99;
+}
+.header_relative {
+    position: relative;
 }

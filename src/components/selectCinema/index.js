@@ -219,7 +219,7 @@ class SelectCinema extends React.Component {
           {feature}
         </div>
         {
-          (this.state.allcityflag || this.state.brandflag || this.state.featureflag) && <div className="blacker" onClick={() => { this.setState(() => ({ allcityflag: false, brandflag: false, featureflag: false })) }}></div>
+          (this.state.allcityflag || this.state.brandflag || this.state.featureflag) && <div className="blacker" onTouchStart={() => { this.setState(() => ({ allcityflag: false, brandflag: false, featureflag: false })) }}></div>
         }
       </div>
     );
