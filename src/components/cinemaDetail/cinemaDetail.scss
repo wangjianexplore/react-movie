@@ -70,8 +70,12 @@
         }
 
         .swiper-slide {
-            width: 65px;
+            width: 65px !important;
             height: 95px;
+
+            &:first-child {
+                margin-left: 10px;
+            }
 
             .post {
                 width: 65px;
@@ -105,9 +109,11 @@
                 }
             }
         }
+
         .movie-info {
             padding: 11px 15px;
             text-align: center;
+
             .movie-title {
                 height: 24px;
                 line-height: 24px;
@@ -115,20 +121,166 @@
                 color: #333;
                 font-weight: 700;
             }
+
             .grade {
                 color: #ffb400;
                 font-size: 16px;
                 padding-left: 6px;
             }
+
             .small {
                 font-size: 10px;
             }
+
             .movie-desc {
                 margin-top: 2px;
                 height: 18.5px;
                 line-height: 18.5px;
                 font-size: 13px;
                 color: #999;
+            }
+        }
+    }
+
+    .nav-wrap {
+        height: 45px;
+        overflow: hidden;
+        white-space: nowrap;
+
+        .am-flexbox {
+            overflow: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        .am-flexbox-item {
+            width: 95px;
+            line-height: 43px;
+            margin-left: 4.5px;
+            font-size: 14px;
+            text-align: center;
+            color: #666;
+            flex: none;
+        }
+
+        .active_item {
+            border-bottom: 2px solid #f03d37;
+            color: #f03d37;
+        }
+    }
+
+    .list-wrap {
+        margin-left: 12.5px;
+        .am-flexbox {
+            padding: 17px 0;
+            padding-right: 12.5px;
+        }
+        .am-flexbox-item {
+            flex: none;
+
+            .begin {
+                font-size: 20px;
+                color: #333;
+                line-height: 1;
+                white-space: nowrap;
+            }
+
+            .end {
+                margin-top: 10px;
+                color: #999;
+                font-size: 11px;
+                line-height: 1;
+                white-space: nowrap;
+            }
+
+            .lan {
+                margin-top: 2px;
+                line-height: 18px;
+                font-size: 13px;
+                color: #333;
+                white-space: normal;
+            }
+
+            .hall {
+                margin-top: 7px;
+                font-size: 11px;
+                color: #999;
+                white-space: normal;
+            }
+        }
+
+        .info-block {
+            margin-left: 17px;
+            flex: 1;
+            // overflow-x: hidden;
+        }
+
+        .price {
+            flex: 0 1 auto;
+            width: 130px;
+            margin-left: 5px;
+
+            .sellPr {
+                display: inline-block;
+                line-height: 1;
+                color: #f03d37;
+                margin-top: 1px;
+                font-size: 19px;
+            }
+
+            .d {
+                font-size: 11px;
+            }
+
+            .vipPrice {
+                display: inline-block;
+                line-height: 15px;
+                height: 15px;
+                transform: scale(.8);
+                transform-origin: left;
+                margin-right: -16px;
+                border: 1px solid #ff9000;
+                border-radius: 2px;
+                font-size: 12px;
+                margin-left: 3px;
+            }
+
+            .icon {
+                color: #fff;
+                background-color: #f90;
+            }
+
+            .num {
+                color: #f90;
+                background-color: #fff;
+                display: inline-block;
+                padding: 0 2px;
+            }
+            .extraDesc {
+                margin-top: 5px;
+                display: block;
+                font-size: 11px;
+                color: #999;
+            }
+        }
+        .button-block {
+            width: 45px;
+            margin-left: 2px;
+            position: relative;
+            .button {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 100%;
+                height: 27px;
+                line-height: 28px;
+                font-size: 12px;
+                background-color: #f03d37;
+                color: #fff;
+                border-radius: 4px;
+                text-align: center;
             }
         }
     }

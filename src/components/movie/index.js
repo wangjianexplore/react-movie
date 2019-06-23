@@ -26,7 +26,7 @@ class Home extends React.Component {
         ];
         return (
             <div className="movie_main">
-                <Header/>
+                <Header arrow={false} />
                 <div className="movie_content">
                     <div className="city">
                         <span className="ellipsis city-name">上海</span>
@@ -35,8 +35,8 @@ class Home extends React.Component {
                     <div className="search-icon"></div>
                     <Tabs tabs={tabs} initialPage={0} animated={false} swipeable={false} useOnPan={false} tabBarInactiveTextColor={'#666'} tabBarActiveTextColor={'#ef4238'} tabBarUnderlineStyle={this.state.linestyle} onTabClick={this.lineHandle}>
                         <div className="being">
-                            <div className="list" onClick={()=>{this.props.history.push('/movieCinema')}}>
-                                <img src={movieimg} className="leftimg" alt=""/>
+                            <div className="list" onClick={() => { this.props.history.push('/movieCinema') }}>
+                                <img src={movieimg} className="leftimg" alt="" />
                                 <div className="list_r">
                                     <div className="col">
                                         <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -48,7 +48,7 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="list">
-                                <img src={movieimg} className="leftimg" alt=""/>
+                                <img src={movieimg} className="leftimg" alt="" />
                                 <div className="list_r">
                                     <div className="col">
                                         <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -60,7 +60,7 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="list">
-                                <img src={movieimg} className="leftimg" alt=""/>
+                                <img src={movieimg} className="leftimg" alt="" />
                                 <div className="list_r">
                                     <div className="col">
                                         <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -72,7 +72,7 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="list">
-                                <img src={movieimg} className="leftimg" alt=""/>
+                                <img src={movieimg} className="leftimg" alt="" />
                                 <div className="list_r">
                                     <div className="col">
                                         <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -84,7 +84,7 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="list">
-                                <img src={movieimg} className="leftimg" alt=""/>
+                                <img src={movieimg} className="leftimg" alt="" />
                                 <div className="list_r">
                                     <div className="col">
                                         <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -96,7 +96,7 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="list">
-                                <img src={movieimg} className="leftimg" alt=""/>
+                                <img src={movieimg} className="leftimg" alt="" />
                                 <div className="list_r">
                                     <div className="col">
                                         <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -108,7 +108,7 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="list">
-                                <img src={movieimg} className="leftimg" alt=""/>
+                                <img src={movieimg} className="leftimg" alt="" />
                                 <div className="list_r">
                                     <div className="col">
                                         <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -120,7 +120,7 @@ class Home extends React.Component {
                                 </div>
                             </div>
                             <div className="list">
-                                <img src={movieimg} className="leftimg" alt=""/>
+                                <img src={movieimg} className="leftimg" alt="" />
                                 <div className="list_r">
                                     <div className="col">
                                         <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -136,43 +136,43 @@ class Home extends React.Component {
                             <div className="com_img">
                                 <div className="title">近期最受期待</div>
                                 <div className="topimg">
-                                    <div className="expected">
-                                        <img src={movieimg} className="rightimg" alt=""/>
+                                    <div className="expected" onClick={()=>{this.props.history.push('/movieDetail')}}>
+                                        <img src={movieimg} className="rightimg" alt="" />
                                         <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
                                         <p className="date">6月28日</p>
                                     </div>
                                     <div className="expected">
-                                        <img src={movieimg} className="rightimg" alt=""/>
+                                        <img src={movieimg} className="rightimg" alt="" />
                                         <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
                                         <p className="date">6月28日</p>
                                     </div>
                                     <div className="expected">
-                                        <img src={movieimg} className="rightimg" alt=""/>
+                                        <img src={movieimg} className="rightimg" alt="" />
                                         <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
                                         <p className="date">6月28日</p>
                                     </div>
                                     <div className="expected">
-                                        <img src={movieimg} className="rightimg" alt=""/>
+                                        <img src={movieimg} className="rightimg" alt="" />
                                         <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
                                         <p className="date">6月28日</p>
                                     </div>
                                     <div className="expected">
-                                        <img src={movieimg} className="rightimg" alt=""/>
+                                        <img src={movieimg} className="rightimg" alt="" />
                                         <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
                                         <p className="date">6月28日</p>
                                     </div>
                                     <div className="expected">
-                                        <img src={movieimg} className="rightimg" alt=""/>
+                                        <img src={movieimg} className="rightimg" alt="" />
                                         <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
                                         <p className="date">6月28日</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="come_list">
-                                <div>
+                                <div onClick={()=>{this.props.history.push('/movieDetail')}}>
                                     <div className="time">6月13日 周四</div>
                                     <div className="list">
-                                        <img src={movieimg} className="leftimg" alt=""/>
+                                        <img src={movieimg} className="leftimg" alt="" />
                                         <div className="list_r">
                                             <div className="col">
                                                 <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -187,7 +187,7 @@ class Home extends React.Component {
                                 <div>
                                     <div className="time">6月14日 周五</div>
                                     <div className="list">
-                                        <img src={movieimg} className="leftimg" alt=""/>
+                                        <img src={movieimg} className="leftimg" alt="" />
                                         <div className="list_r">
                                             <div className="col">
                                                 <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -199,7 +199,7 @@ class Home extends React.Component {
                                         </div>
                                     </div>
                                     <div className="list">
-                                        <img src={movieimg} className="leftimg" alt=""/>
+                                        <img src={movieimg} className="leftimg" alt="" />
                                         <div className="list_r">
                                             <div className="col">
                                                 <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -211,7 +211,7 @@ class Home extends React.Component {
                                         </div>
                                     </div>
                                     <div className="list">
-                                        <img src={movieimg} className="leftimg" alt=""/>
+                                        <img src={movieimg} className="leftimg" alt="" />
                                         <div className="list_r">
                                             <div className="col">
                                                 <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
@@ -227,18 +227,18 @@ class Home extends React.Component {
                         </div>
                     </Tabs>
                 </div>
-                <Footer num="0"/>
+                <Footer num="0" />
             </div>
         );
     }
     lineHandle = (tab, index) => {
         if (index) {
-            let obj = Object.assign({}, this.state.linestyle, {left: '60%',});
+            let obj = Object.assign({}, this.state.linestyle, { left: '60%', });
             this.setState({
                 linestyle: obj
             });
         } else {
-            let obj = Object.assign({}, this.state.linestyle, {left: '0'})
+            let obj = Object.assign({}, this.state.linestyle, { left: '0' })
             this.setState({
                 linestyle: obj
             });

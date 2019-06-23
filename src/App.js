@@ -4,7 +4,7 @@ import store from './store';
 import { Provider } from 'react-redux';
 import routes from './router';
 import './assets/iconfont/style.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
   const router = routes.map((route, key) => {
@@ -12,11 +12,11 @@ function App() {
   });
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           {router}
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   );
 }

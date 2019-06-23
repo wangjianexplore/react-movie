@@ -4,7 +4,8 @@ import './cinemaDetail.scss';
 import location from '../../assets/images/location.png';
 import movieimg from '../../assets/images/movie.jpg'
 import Swiper from 'swiper';
-import 'swiper/dist/css/swiper.css'
+import 'swiper/dist/css/swiper.css';
+import { Flex } from 'antd-mobile';
 
 class CinemaDetail extends React.Component {
     constructor(props) {
@@ -15,7 +16,8 @@ class CinemaDetail extends React.Component {
         new Swiper('.swiper-container', {
             slidesPerView: 5,
             spaceBetween: 15,
-            centeredSlides: true
+            centeredSlides: true,
+            slideToClickedSlide: true
         });
     }
     render() {
@@ -37,42 +39,42 @@ class CinemaDetail extends React.Component {
                             <div className="swiper-wrapper">
                                 <div className="swiper-slide">
                                     <div className="post">
-                                        <img src={movieimg} alt=""/>
+                                        <img src={movieimg} alt="" />
                                     </div>
                                 </div>
                                 <div className="swiper-slide">
                                     <div className="post">
-                                        <img src={movieimg} alt=""/>
+                                        <img src={movieimg} alt="" />
                                     </div>
                                 </div>
                                 <div className="swiper-slide">
                                     <div className="post">
-                                        <img src={movieimg} alt=""/>
+                                        <img src={movieimg} alt="" />
                                     </div>
                                 </div>
                                 <div className="swiper-slide">
                                     <div className="post">
-                                        <img src={movieimg} alt=""/>
+                                        <img src={movieimg} alt="" />
                                     </div>
                                 </div>
                                 <div className="swiper-slide">
                                     <div className="post">
-                                        <img src={movieimg} alt=""/>
+                                        <img src={movieimg} alt="" />
                                     </div>
                                 </div>
                                 <div className="swiper-slide">
                                     <div className="post">
-                                        <img src={movieimg} alt=""/>
+                                        <img src={movieimg} alt="" />
                                     </div>
                                 </div>
                                 <div className="swiper-slide">
                                     <div className="post">
-                                        <img src={movieimg} alt=""/>
+                                        <img src={movieimg} alt="" />
                                     </div>
                                 </div>
                                 <div className="swiper-slide">
                                     <div className="post">
-                                        <img src={movieimg} alt=""/>
+                                        <img src={movieimg} alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -84,6 +86,158 @@ class CinemaDetail extends React.Component {
                             </div>
                             <div className="movie-desc ellipsis">125分钟 | 动画 | 柊瑠美,周冬雨,入野自由</div>
                         </div>
+                    </div>
+                    <div className="nav-wrap">
+                    <Flex>
+                        <Flex.Item className="active_item">今天06月16日</Flex.Item>
+                        <Flex.Item>今天06月16日</Flex.Item>
+                    </Flex>
+                    </div>
+                    <div className="list-wrap">
+                        <Flex onClick={()=> {this.props.history.push('/payOrder')}}>
+                            <Flex.Item>
+                                <div className="begin">10:25</div>
+                                <div className="end">12:30 散场</div>
+                            </Flex.Item>
+                            <Flex.Item className="info-block">
+                                <div className="lan">日语 2D</div>
+                                <div className="hall">3号厅(VIP气味王国厅)</div>
+                            </Flex.Item>
+                            <Flex.Item className="price">
+                                <div className="sellPr">
+                                    <span className="d">¥</span>
+                                    <span>49</span>
+                                </div>
+                                <div className="vipPrice">
+                                    <span className="icon">折扣卡</span>
+                                    <span className="num">¥41</span>
+                                </div>
+                                <div className="extraDesc">折扣卡首单特惠</div>
+                            </Flex.Item>
+                            <Flex.Item className="button-block">
+                                <div className="button">购票</div>
+                            </Flex.Item>
+                        </Flex>
+                        <Flex>
+                            <Flex.Item>
+                                <div className="begin">10:25</div>
+                                <div className="end">12:30 散场</div>
+                            </Flex.Item>
+                            <Flex.Item className="info-block">
+                                <div className="lan">日语 2D</div>
+                                <div className="hall">3号厅(VIP气味王国厅)</div>
+                            </Flex.Item>
+                            <Flex.Item className="price">
+                                <div className="sellPr">
+                                    <span className="d">¥</span>
+                                    <span>49</span>
+                                </div>
+                                <div className="vipPrice">
+                                    <span className="icon">折扣卡</span>
+                                    <span className="num">¥41</span>
+                                </div>
+                                <div className="extraDesc">折扣卡首单特惠</div>
+                            </Flex.Item>
+                            <Flex.Item className="button-block">
+                                <div className="button">购票</div>
+                            </Flex.Item>
+                        </Flex>
+                        <Flex>
+                            <Flex.Item>
+                                <div className="begin">10:25</div>
+                                <div className="end">12:30 散场</div>
+                            </Flex.Item>
+                            <Flex.Item className="info-block">
+                                <div className="lan">日语 2D</div>
+                                <div className="hall">3号厅(VIP气味王国厅)</div>
+                            </Flex.Item>
+                            <Flex.Item className="price">
+                                <div className="sellPr">
+                                    <span className="d">¥</span>
+                                    <span>49</span>
+                                </div>
+                                <div className="vipPrice">
+                                    <span className="icon">折扣卡</span>
+                                    <span className="num">¥41</span>
+                                </div>
+                                <div className="extraDesc">折扣卡首单特惠</div>
+                            </Flex.Item>
+                            <Flex.Item className="button-block">
+                                <div className="button">购票</div>
+                            </Flex.Item>
+                        </Flex>
+                        <Flex>
+                            <Flex.Item>
+                                <div className="begin">10:25</div>
+                                <div className="end">12:30 散场</div>
+                            </Flex.Item>
+                            <Flex.Item className="info-block">
+                                <div className="lan">日语 2D</div>
+                                <div className="hall">3号厅(VIP气味王国厅)</div>
+                            </Flex.Item>
+                            <Flex.Item className="price">
+                                <div className="sellPr">
+                                    <span className="d">¥</span>
+                                    <span>49</span>
+                                </div>
+                                <div className="vipPrice">
+                                    <span className="icon">折扣卡</span>
+                                    <span className="num">¥41</span>
+                                </div>
+                                <div className="extraDesc">折扣卡首单特惠</div>
+                            </Flex.Item>
+                            <Flex.Item className="button-block">
+                                <div className="button">购票</div>
+                            </Flex.Item>
+                        </Flex>
+                        <Flex>
+                            <Flex.Item>
+                                <div className="begin">10:25</div>
+                                <div className="end">12:30 散场</div>
+                            </Flex.Item>
+                            <Flex.Item className="info-block">
+                                <div className="lan">日语 2D</div>
+                                <div className="hall">3号厅(VIP气味王国厅)</div>
+                            </Flex.Item>
+                            <Flex.Item className="price">
+                                <div className="sellPr">
+                                    <span className="d">¥</span>
+                                    <span>49</span>
+                                </div>
+                                <div className="vipPrice">
+                                    <span className="icon">折扣卡</span>
+                                    <span className="num">¥41</span>
+                                </div>
+                                <div className="extraDesc">折扣卡首单特惠</div>
+                            </Flex.Item>
+                            <Flex.Item className="button-block">
+                                <div className="button">购票</div>
+                            </Flex.Item>
+                        </Flex>
+                        <Flex>
+                            <Flex.Item>
+                                <div className="begin">10:25</div>
+                                <div className="end">12:30 散场</div>
+                            </Flex.Item>
+                            <Flex.Item className="info-block">
+                                <div className="lan">日语 2D</div>
+                                <div className="hall">3号厅(VIP气味王国厅)</div>
+                            </Flex.Item>
+                            <Flex.Item className="price">
+                                <div className="sellPr">
+                                    <span className="d">¥</span>
+                                    <span>49</span>
+                                </div>
+                                <div className="vipPrice">
+                                    <span className="icon">折扣卡</span>
+                                    <span className="num">¥41</span>
+                                </div>
+                                <div className="extraDesc">折扣卡首单特惠</div>
+                            </Flex.Item>
+                            <Flex.Item className="button-block">
+                                <div className="button">购票</div>
+                            </Flex.Item>
+                        </Flex>
                     </div>
                 </div>
             </div>

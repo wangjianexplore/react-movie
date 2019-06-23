@@ -1,0 +1,114 @@
+.payOrder {
+    .count-down {
+        color: #f90;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        background: #fef3d9;
+        background-size: 17px 17px;
+        text-align: center;
+        line-height: 38px;
+        box-sizing: border-box;
+        height: 38px;
+        font-size: 13px;
+    }
+    .movie-info {
+        background-color: #fff;
+        padding: 0 15px;
+        line-height: 1;
+        color: #333;
+        font-size: 13px;
+        .info {
+            padding: 15px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .title {
+            font-family: PingFangSC-Medium,Hiragino Sans GB,sans-serif;
+            font-size: 16px;
+            line-height: 23px;
+        }
+        .date {
+            font-size: 14px;
+            line-height: 20px;
+            margin-top: 7px;
+            color: #f34d41;
+        }
+        .local {
+            font-size: 14px;
+            line-height: 20px;
+            margin-top: 4px;
+        }
+        .seats {
+            font-size: 14px;
+            line-height: 20px;
+            margin-top: 4px;
+        }
+        .seat {
+            display: inline-block;
+        }
+    }
+    .pay-info {
+        background-color: #fff;
+        padding: 0 15px;
+        .box-flex {
+            display: flex;
+            line-height: 45px;
+            font-size: 15px;
+            color: #666;
+            margin-right: -15px;
+            padding-right: 15px;
+            justify-content: space-between;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .right-sel {
+            color: #333;
+            font-size: 13px;
+        }
+        .icon {
+            color: #ef4238;
+            font-size: 13px;
+        }
+        .paymoney {
+            color: #ef4238;
+            font-size: 18px;
+        }
+    }
+    .pay-btn {
+        padding: 10px 15px;
+        background-color: #fff;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        z-index: 10;
+        box-sizing: border-box;
+        .box-flex {
+            display: flex;
+            justify-content: space-between;
+            color: #999;
+            align-items: center;
+            margin-bottom: 10px;
+            .also {
+                font-weight: 400;
+                color: #333;
+                font-size: 14px;
+            }
+            .yuan {
+                color: #ef4238;
+                font-size: 13px;
+            }
+            .price {
+                font-size: 21px;
+                color: #ef4238;
+            }
+        }
+        .price-btn {
+            line-height: 45px;
+            width: 100%;
+            background-color: #ff9e05;
+            border-radius: 4px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+        }
+    }
+}

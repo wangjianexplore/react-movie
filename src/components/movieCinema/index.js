@@ -6,6 +6,7 @@ import sdmax from '../../assets/images/sdmax.png';
 import CinemaList from '../cinemaList';
 import SelectCinema from '../selectCinema';
 import { Flex } from 'antd-mobile';
+import { Link } from 'react-router-dom';
 
 class MovieCinema extends React.Component {
   constructor(props) {
@@ -74,7 +75,9 @@ class MovieCinema extends React.Component {
       <div className="movieCinema">
         <Header title="X战警：黑凤凰" position="relative" />
         <div className="mc_main">
-          {!this.state.allcityflag && !this.state.brandflag && !this.state.featureflag && MovieDetail}
+          <Link to="/movieDetail">
+            {!this.state.allcityflag && !this.state.brandflag && !this.state.featureflag && MovieDetail}
+          </Link>
           <div id="fixedId" className={this.state.fixedFlag ? 'fixedClass' : ''}>
             <div className="showDays" style={{ position: 'relative', zIndex: 100 }}>
               <Flex>
