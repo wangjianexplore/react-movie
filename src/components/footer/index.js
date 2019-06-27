@@ -23,7 +23,7 @@ class Footer extends React.Component {
                         影院
                     </div>
                 </Link>
-                <Link to="/cinema">
+                <Link to="/my">
                     <div className={`f_col ${num === '2' ? 'f_active' : ''}`}>
                         <span className="iconfont icon-wode"></span>
                         我的

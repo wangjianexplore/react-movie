@@ -21,7 +21,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+li {
+  list-style-type: none;
+}
 .ellipsis {
   white-space: nowrap;
   overflow: hidden;

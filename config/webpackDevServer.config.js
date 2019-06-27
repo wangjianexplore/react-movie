@@ -81,7 +81,13 @@ module.exports = function(proxy, allowedHost) {
       disableDotRule: true,
     },
     public: allowedHost,
-    proxy,
+    proxy: {
+      "/dianying": {
+        target: "http://m.maoyan.com/dianying",
+        changeOrigin: true,
+        pathRewrite: {"^/dianying" : ""}
+      }
+    },
     before(app, server) {
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons
