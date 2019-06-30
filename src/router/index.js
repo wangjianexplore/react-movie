@@ -5,6 +5,8 @@ import CinemaDetail from '../components/cinemaDetail';
 import MovieDetail from '../components/movieDetail';
 import PayOrder from '../components/payOrder';
 import My from '../components/my';
+import CityList from '../components/cityList';
+import MovieOrder from '../components/movieOrder';
 
 let routes = [
     {
@@ -35,6 +37,14 @@ let routes = [
     {
         path: '/my',
         component: My
+    },
+    {
+        path: '/cityList',
+        component: CityList
+    },
+    {
+        path: '/movieOrder',
+        component: MovieOrder
     }
 ]
 

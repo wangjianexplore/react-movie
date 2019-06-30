@@ -16,7 +16,7 @@ class Cinema extends React.Component {
         <Header title="影院" />
         <div className="cinema_content">
           <div className="top">
-            <div className="city">
+            <div className="city" onClick={()=>{this.props.history.push('./cityList')}}>
               <span className="ellipsis city-name">上海</span>
               <i className="city-entry-arrow" />
             </div>

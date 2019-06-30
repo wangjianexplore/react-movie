@@ -17,6 +17,9 @@ class SelectCinema extends React.Component {
       showNum: 0
     };
   }
+  static defaultProps = {
+    getChildFlag: () => {}
+  }
   render() {
     const tabs = [{ title: "商区" }, { title: "地铁站" }];
     let allcity = '',
@@ -199,7 +202,7 @@ class SelectCinema extends React.Component {
     }
     return (
       <div>
-        <div className="wrap">
+        <div className="wrap" onClick={()=>{this.props.getChildFlag(true)}}>
           <div className="tab">
             <div className="item" onClick={() => { this.setState((state) => ({ allcityflag: !state.allcityflag, brandflag: false, featureflag: false, showNum: 1 })) }}>
               全城

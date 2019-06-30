@@ -1,4 +1,4 @@
-.movie_main {
+.movie {
     .am-tabs-tab-bar-wrap {
         border-bottom: 1px solid #e6e6e6;
         height: 44px;
@@ -39,9 +39,10 @@
         display: flex;
         -webkit-box-align: center;
         align-items: center;
-        position: absolute;
+        position: fixed;
         left: 15px;
-        top: 14px;
+        top: 64px;
+        z-index: 9999;
         .city-name {
             max-width: 70px;
         }

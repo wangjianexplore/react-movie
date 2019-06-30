@@ -1,0 +1,148 @@
+.movieOrder {
+
+    .main {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        bottom: 0;
+        background-image: url(../../assets/images/nothing.png);
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: 110px 110px;
+        height: 200px;
+        margin-top: -100px;
+        text-align: center;
+
+        .tip-text {
+            display: block;
+            padding-top: 120px;
+            font-size: 16px;
+            height: 28px;
+            line-height: 28px;
+            color: #999;
+        }
+    }
+
+    .order-item {
+        background-color: #fff;
+        margin-bottom: 10px;
+
+        .order-title {
+            display: flex;
+            padding: 0 15px;
+        }
+
+        .cinema-name {
+            text-align: left;
+            -webkit-box-flex: 1;
+            flex: 1 1 auto;
+            line-height: 38px;
+            height: 38px;
+            font-size: 13px;
+            color: #666;
+            margin-right: 6px;
+        }
+
+        .icon-fanhui-copy-copy {
+            font-size: 15px;
+        }
+
+        .leftPaySecond {
+            display: inline-block;
+            -webkit-box-flex: 0;
+            flex: 0 0 auto;
+            line-height: 38px;
+            height: 38px;
+            font-size: 13px;
+            color: #ef4238;
+        }
+
+        .order-info {
+            margin: 12px 15px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+
+            img {
+                -webkit-box-flex: 0;
+                flex: 0 0 auto;
+                width: 57px;
+                height: 80px;
+            }
+        }
+
+        .order-desc {
+            -webkit-box-flex: 1;
+            flex: 1 1 auto;
+            margin-left: 12px;
+            margin-top: 4px;
+            overflow: hidden;
+
+            .movie-name {
+                font-size: 15px;
+                color: #000;
+                line-height: 21px;
+                height: 21px;
+            }
+
+            .showTime {
+                font-size: 12px;
+                color: #888;
+                line-height: 18px;
+                height: 18px;
+            }
+
+            .position {
+                font-size: 12px;
+                color: #888;
+                line-height: 18px;
+                height: 18px;
+            }
+        }
+
+        .link-status {
+            -webkit-box-flex: 0;
+            flex: 0 0 auto;
+            margin-left: 12px;
+            width: 48px;
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            margin-top: -14px;
+            height: 28px;
+            line-height: 28px;
+            font-size: 12px;
+            border-radius: 6px;
+            padding: 0 10px;
+            display: inline-block;
+            color: #fff;
+            background-color: #f03d37;
+            border: 1px solid #f03d37;
+        }
+
+        .order-more {
+            margin-left: 15px;
+            padding: 0 15px 0 0;
+            border-top: 1p solid #eaeaea;
+        }
+
+        .price {
+            line-height: 42px;
+            height: 42px;
+            font-size: 13px;
+            color: #888;
+            display: inline-block;
+        }
+
+        .status {
+            color: #333;
+            float: right;
+            line-height: 42px;
+            height: 42px;
+            font-size: 13px;
+        }
+    }
+}

@@ -13,9 +13,7 @@ class MovieCinema extends React.Component {
     super(props);
     this.state = {
       num: 0,
-      allcityflag: false,
-      brandflag: false,
-      featureflag: false,
+      flag: false,
       fixedFlag: false
     };
   }
@@ -23,28 +21,17 @@ class MovieCinema extends React.Component {
     this.handleFixed();
   }
   componentDidUpdate() {
-    // 此处是监听子组件中变量发生变化的时候，获取其值，暂时只能用这种取巧的方法，希望之后能有更好的方法
-    if (this.state.allcityflag !== this.refs.selectCinema.state.allcityflag) {
-      this.setState({
-        allcityflag: this.refs.selectCinema.state.allcityflag
-      });
-    }
-    if (this.state.brandflag !== this.refs.selectCinema.state.brandflag) {
-      this.setState({
-        brandflag: this.refs.selectCinema.state.brandflag
-      });
-    }
-    if (this.state.featureflag !== this.refs.selectCinema.state.featureflag) {
-      this.setState({
-        featureflag: this.refs.selectCinema.state.featureflag
-      });
-    }
+  }
+  getChildFlag = (flag) => {
+    this.setState({
+      flag: flag
+    });
   }
   handleFixed() {
     // let x = document.getElementById('fixedId').offsetTop;
     window.onscroll = () => {
       let y = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
-      y > 230 ? this.setState({fixedFlag: true}) : this.setState({fixedFlag: false});
+      y > 230 ? this.setState({ fixedFlag: true }) : this.setState({ fixedFlag: false });
     }
   }
   render() {
@@ -90,9 +77,7 @@ class MovieCinema extends React.Component {
                 <Flex.Item>今天06月16日</Flex.Item>
               </Flex>
             </div>
-            <div onClick={() => { this.setState((state) => ({ num: state.num + 1 })) }}>
-              <SelectCinema ref="selectCinema" />
-            </div>
+            <SelectCinema ref="selectCinema" getChildFlag={this.getChildFlag} />
           </div>
           <CinemaList />
         </div>

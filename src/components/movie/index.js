@@ -5,7 +5,7 @@ import './movie.scss';
 import { Tabs } from 'antd-mobile';
 import movieimg from '../../assets/images/movie.jpg'
 
-class Home extends React.Component {
+class Movie extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,13 +22,13 @@ class Home extends React.Component {
     render() {
         const tabs = [
             { title: '正在热映' },
-            { title: '即将上映' },
+            { title: '即将上映' }
         ];
         return (
-            <div className="movie_main">
+            <div className="movie">
                 <Header arrow={false} />
                 <div className="movie_content">
-                    <div className="city">
+                    <div className="city" onClick={()=>{this.props.history.push('./cityList')}}>
                         <span className="ellipsis city-name">上海</span>
                         <i className="city-entry-arrow"></i>
                     </div>
@@ -246,4 +246,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+export default Movie;

@@ -15,6 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: .3rem;
+  background-color: #f3f3f3!important;
 }
 
 code {
