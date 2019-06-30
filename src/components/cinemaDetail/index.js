@@ -15,7 +15,8 @@ class CinemaDetail extends React.Component {
     componentDidMount() {
         new Swiper('.swiper-container', {
             slidesPerView: 5,
-            spaceBetween: 15,
+            setWrapperSize :true,
+            spaceBetween: 10,
             centeredSlides: true,
             slideToClickedSlide: true
         });
