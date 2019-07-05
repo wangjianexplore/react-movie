@@ -8,7 +8,11 @@ import "./cinema.scss";
 class Cinema extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      cinemaObj: {}
+    };
+  }
+  componentDidMount() {
   }
   render() {
     return (
@@ -25,7 +29,7 @@ class Cinema extends React.Component {
               搜影院
             </div>
           </div>
-          <SelectCinema />
+          <SelectCinema cinemaObj={this.state.cinemaObj}/>
           <CinemaList />
         </div>
         <Footer num="1" />

@@ -13,11 +13,11 @@ class Header extends React.Component {
         };
     }
     componentDidMount() {
-        // console.log(this.props.history);s
+        // console.log(this.props);
     }
-    goback = () => {
-        window.history.back();
-    }
+    // goback = () => {
+    //     window.history.back();
+    // }
     render() {
         return (
             <div className={`header_main ${this.props.position === 'relative' ? 'header_relative' : 'header_fixed'}`}>

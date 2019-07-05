@@ -19,7 +19,7 @@ let routes = [
         component: Cinema
     },
     {
-        path: '/movieCinema',
+        path: '/movieCinema/:id',
         component: MovieCinema
     },
     {
