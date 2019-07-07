@@ -6,7 +6,9 @@ import CinemaList from '../cinemaList';
 import SelectCinema from '../selectCinema';
 import { Flex } from 'antd-mobile';
 import { Link } from 'react-router-dom';
-import Api from '../../utils/htttp.js';
+import api from '../../utils/api';
+import { handleImg, showTime, formatDate } from '../../utils/tool';
+import Loading from '../loading';
 
 class MovieCinema extends React.Component {
   constructor(props) {
@@ -15,22 +17,29 @@ class MovieCinema extends React.Component {
       num: 0,
       flag: false,
       fixedFlag: false,
-      detailMovie: ''
+      detailMovie: '',
+      cinemaList: [],
+      showDays: [],
+      dateIndex: 0,
+      loadingflag: false
     };
   }
   componentDidMount() {
-    this.handleFixed();
+    window.addEventListener('scroll', this.handleFixed, false);
     this.getDetailmovie();
+    this.getCinema(formatDate(new Date(), 'yyyy-MM-dd'), 0);
   }
-  componentDidUpdate() {
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleFixed, false);
   }
   getDetailmovie = () => {
     let rm = this;
-    Api.get('/ajax/detailmovie', {
+    api.get('/ajax/detailmovie', {
       movieId: this.props.match.params.id
     }, function (res) {
+      let data = res.detailMovie;
       rm.setState({
-        detailMovie: res.detailMovie
+        detailMovie: data
       });
     });
   }
@@ -39,21 +48,59 @@ class MovieCinema extends React.Component {
       flag: flag
     });
   }
-  handleFixed() {
-    window.onscroll = () => {
-      let y = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
-      y > 230 ? this.setState({ fixedFlag: true }) : this.setState({ fixedFlag: false });
-    }
+  handleFixed = () => {
+    let y = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+    y > 230 ? this.setState({ fixedFlag: true }) : this.setState({ fixedFlag: false });
   }
+  getCinema = (date, index) => {
+    let rm = this;
+    rm.setState({
+      cinemaList: [],
+      dateIndex: index,
+      loadingflag: true
+    });
+    let todaytime = (new Date()).getTime();
+    api.post('/ajax/movie?forceUpdate=' + todaytime, {
+      movieId: rm.props.match.params.id,
+      day: date,
+      offset: 0,
+      limit: 20,
+      districtId: -1,
+      lineId: -1,
+      hallType: -1,
+      brandId: -1,
+      serviceId: -1,
+      areaId: -1,
+      stationId: -1,
+      item: '',
+      updateShowDay: true,
+      reqId: todaytime,
+      cityId: 10
+    }, function (res) {
+      let data = res;
+      rm.setState({
+        cinemaList: data.cinemas,
+        loadingflag: false
+      });
+      if (data.showDays) {
+        let showDaysArr = data.showDays.dates;
+        !data.cinemas.length && rm.getCinema(data.showDays.dates[0].date, index);
+        rm.setState({
+          showDays: showDaysArr
+        });
+      }
+    });
+  }
+
   render() {
     let img = '', detailMovie = {};
     if (this.state.detailMovie) {
       detailMovie = this.state.detailMovie;
-      img = detailMovie.img.replace(/w.h/g, '128.180');
+      img = handleImg(detailMovie.img);
     }
     return (
       <div className="movieCinema">
-        <Header title="X战警：黑凤凰" position="relative" />
+        <Header title={detailMovie.nm} position="relative" />
         <div className="mc_main">
           <Link to="/movieDetail">
             <div className="movie-detail">
@@ -66,14 +113,14 @@ class MovieCinema extends React.Component {
                 <div className="mc_content">
                   <div className="title ellipsis">{detailMovie.nm}</div>
                   <div className="title-en-name ellipsis">{detailMovie.enm}</div>
-                  {detailMovie.sc?<div className="score ellipsis">{detailMovie.sc}<span className="snum">({detailMovie.snum}万人评)</span></div>:<div className="score ellipsis"><span className="snum snum-no">暂无评分</span></div>}
+                  {detailMovie.sc ? <div className="score ellipsis">{detailMovie.sc}<span className="snum">({detailMovie.snum}万人评)</span></div> : <div className="score ellipsis"><span className="snum snum-no">暂无评分</span></div>}
                   <div className="type ellipsis">
                     <span>{detailMovie.cat}</span>
                     <div className="type-group">
-                      {detailMovie.version&&<img className="type_img" src={sdmax} alt="" />}
+                      {detailMovie.version && <img className="type_img" src={sdmax} alt="" />}
                     </div>
                   </div>
-                  <div className="title-en-name ellipsis">{detailMovie.fra}/{detailMovie.dur}分钟</div>
+                  <div className="title-en-name ellipsis">{detailMovie.src}/{detailMovie.dur}分钟</div>
                   <div className="title-en-name ellipsis">{detailMovie.pubDesc}</div>
                 </div>
               </div>
@@ -83,18 +130,19 @@ class MovieCinema extends React.Component {
           <div id="fixedId" className={this.state.fixedFlag ? 'fixedClass' : ''}>
             <div className="showDays" style={{ position: 'relative', zIndex: 100 }}>
               <Flex>
-                <Flex.Item className="active_item">今天06月16日</Flex.Item>
-                <Flex.Item>今天06月16日</Flex.Item>
-                <Flex.Item>今天06月16日</Flex.Item>
-                <Flex.Item>今天06月16日</Flex.Item>
-                <Flex.Item>今天06月16日</Flex.Item>
-                <Flex.Item>今天06月16日</Flex.Item>
-                <Flex.Item>今天06月16日</Flex.Item>
+                {
+                  this.state.showDays.map((item, index) => {
+                    return (
+                      <Flex.Item onClick={this.getCinema.bind(this, item.date, index)} className={this.state.dateIndex === index && 'active_item'} key={item.date}>{showTime(item.date)}</Flex.Item>
+                    )
+                  })
+                }
               </Flex>
             </div>
             <SelectCinema />
           </div>
-          <CinemaList />
+          <Loading loadingflag={this.state.loadingflag}/>
+          <CinemaList cinemaList={this.state.cinemaList} />
         </div>
       </div>
     );

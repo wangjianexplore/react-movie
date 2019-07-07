@@ -9,29 +9,36 @@
         width: 100%;
         background-color: #fff;
     }
+
     .am-tabs-content-wrap {
         margin-top: 44px;
     }
+
     .am-tabs-default-bar {
         width: 208px;
         margin: 0 auto;
     }
+
     .am-tabs-default-bar-tab {
-        width: 40%!important;
+        width: 40% !important;
         font-size: 15px;
         font-weight: 700;
     }
+
     .am-tabs-default-bar-underline {
-        width: 40%!important;
+        width: 40% !important;
     }
+
     .am-tabs-default-bar-content {
         justify-content: space-between;
     }
+
     .movie_content {
         background-color: #fff;
         position: relative;
         margin-top: 50px;
     }
+
     .city {
         font-size: 15px;
         color: #666;
@@ -43,10 +50,12 @@
         left: 15px;
         top: 64px;
         z-index: 9999;
+
         .city-name {
             max-width: 70px;
         }
     }
+
     .search-icon {
         position: absolute;
         right: 0;
@@ -56,17 +65,21 @@
         background-size: 20px;
         padding: 10px 15px 10px 10px;
     }
+
     .being {
         padding: 0 15px;
         padding-bottom: 48px;
+
         .leftimg {
             width: 64px;
             height: 90px;
             margin: 12px 0;
         }
+
         .list {
             display: flex;
         }
+
         .list_r {
             padding: 12px 14px 12px 0;
             margin-left: 10px;
@@ -77,15 +90,18 @@
             align-items: center;
             border-bottom: 1px solid #eaeaea;
         }
+
         .col {
             overflow: hidden;
         }
+
         .moviename {
             font-size: 17px;
             color: #333;
             font-weight: 700;
             margin-bottom: 7px;
         }
+
         .u3d {
             width: 43px;
             height: 14px;
@@ -94,22 +110,34 @@
             background: url(../../assets/images/3d.png) no-repeat;
             background-size: contain;
         }
+        .p3d {
+            width: 43px;
+            height: 14px;
+            margin-left: 5px;
+            display: inline-block;
+            background: url(../../assets/images/3d2.png) no-repeat;
+            background-size: contain;
+        }
+
         .score {
             font-size: 13px;
             color: #666;
         }
+
         .grade {
             font-weight: 700;
             color: #faaf00;
             font-size: 15px;
             padding-left: 5px;
         }
+
         .actor {
             font-size: 13px;
             color: #666;
             margin-top: 6px;
-            line-height: 15px;        
+            line-height: 15px;
         }
+
         .btn {
             width: 47px;
             height: 27px;
@@ -123,60 +151,95 @@
             font-size: 12px;
         }
     }
+
     .coming {
         padding: 0;
         padding-bottom: 48px;
+
         .come_list {
             border-top: 12px solid #f5f5f5;
         }
+
         .list {
             padding: 0 12px;
         }
+
         .time {
             font-size: 14px;
             color: #333;
             padding: 12px 12px 0;
         }
+
         .btn2 {
             background-color: #3c9fe6;
         }
+
         .com_img {
             height: 210px;
             overflow: hidden;
             padding: 12px;
             padding-bottom: 0;
         }
+
         .title {
             margin: 0 0 12px;
             font-size: 14px;
             color: #333;
         }
+
         .expected {
             width: 85px;
             margin-right: 14px;
             overflow: hidden;
             display: inline-block;
+
             &:last-child {
                 margin-right: 0;
             }
         }
+
         .topimg {
             overflow-x: scroll;
             overflow-y: hidden;
             white-space: nowrap;
+
             &::-webkit-scrollbar {
                 display: none;
             }
+        }
+
+        .expContent {
+            position: relative;
+        }
+
+        .wish-bg {
+            display: inline-block;
+            width: 100%;
+            height: 35px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(-180deg, rgba(77, 77, 77, 0), #000);
+        }
+        .wish {
+            position: absolute;
+            left: 4px;
+            bottom: 4px;
+            color: #faaf00;
+            font-size: 11px;
+            font-weight: 600;
         }
         .rightimg {
             width: 85px;
             height: 115px;
         }
+
         .name {
             margin: 6px 0 3px;
             font-size: 13px;
             color: #222;
         }
+
         .date {
             font-size: 12px;
             color: #999;

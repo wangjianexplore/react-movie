@@ -2,7 +2,7 @@ import React from 'react';
 import { Tabs, Flex, Button } from 'antd-mobile';
 import './selectCinema.scss';
 import PropTypes from 'prop-types';
-import Api from '../../utils/htttp.js';
+import api from '../../utils/api';
 
 class SelectCinema extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class SelectCinema extends React.Component {
   }
   getFilterCinemas = () => {
     let rm = this;
-    Api.get('/ajax/filterCinemas', {
+    api.get('/ajax/filterCinemas', {
       ci: 10
     }, function (res) {
       rm.setState({

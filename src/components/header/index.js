@@ -27,7 +27,7 @@ class Header extends React.Component {
     }
 }
 Header.defaultProps = {
-    title: '电影',
+    title: '',
     position: 'fixed',
     arrow: true
 }

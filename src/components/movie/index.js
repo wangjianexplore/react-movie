@@ -3,8 +3,8 @@ import Header from '../header';
 import Footer from '../footer'
 import './movie.scss';
 import { Tabs } from 'antd-mobile';
-import movieimg from '../../assets/images/movie.jpg';
-import Api from '../../utils/htttp.js';
+import api from '../../utils/api';
+import { handleImg } from '../../utils/tool';
 
 class Movie extends React.Component {
   constructor(props) {
@@ -16,18 +16,46 @@ class Movie extends React.Component {
         bottom: '-1px',
         backgroundColor: '#ef4238'
       },
-      movieList: []
+      movieList: [],
+      expectList: [],
+      comingList: []
     }
   }
   componentDidMount() {
     this.getMovieOnInfoList();
+    this.getExpectList();
+    this.getComingList();
   }
   getMovieOnInfoList = () => {
     let rm = this;
-    Api.get('/ajax/movieOnInfoList', {
+    api.get('/ajax/movieOnInfoList', {
     }, function (res) {
       rm.setState({
         movieList: res.movieList
+      });
+    });
+  }
+  getExpectList = () => {
+    let rm = this;
+    api.get('/ajax/mostExpected', {
+      ci: 10,
+      limit: 10,
+      offset: 0,
+      token: 'H2DwJBD3buK2V_VyQbWvEdutSn0AAAAApQgAAHyMYuOz8oIGyIDhZ3_NX29YyDaXyB0JsItIVGbRXx8xNVSsMPT4HrPx1l-gt1hVwg'
+    }, function (res) {
+      rm.setState({
+        expectList: res.coming
+      });
+    });
+  }
+  getComingList = () => {
+    let rm = this;
+    api.get('/ajax/comingList', {
+      ci: 10,
+      token: 'H2DwJBD3buK2V_VyQbWvEdutSn0AAAAApQgAAHyMYuOz8oIGyIDhZ3_NX29YyDaXyB0JsItIVGbRXx8xNVSsMPT4HrPx1l-gt1hVwg'
+    }, function (res) {
+      rm.setState({
+        comingList: res.coming
       });
     });
   }
@@ -38,7 +66,7 @@ class Movie extends React.Component {
     ];
     return (
       <div className="movie">
-        <Header arrow={false} />
+        <Header title="电影" arrow={false} />
         <div className="movie_content">
           <div className="city" onClick={() => { this.props.history.push('./cityList') }}>
             <span className="ellipsis city-name">上海</span>
@@ -49,10 +77,9 @@ class Movie extends React.Component {
             <div className="being">
               {
                 this.state.movieList.map((item) => {
-                  let img = item.img.replace(/w.h/g, '128.180');
                   return (
-                    <div key={item.id} className="list" onClick={() => { this.props.history.push('/movieCinema/'+item.id) }}>
-                      <img src={img} className="leftimg" alt="" />
+                    <div key={item.id} className="list" onClick={() => { this.props.history.push('/movieCinema/' + item.id) }}>
+                      <img src={handleImg(item.img)} className="leftimg" alt="" />
                       <div className="list_r">
                         <div className="col">
                           {
@@ -75,93 +102,51 @@ class Movie extends React.Component {
               <div className="com_img">
                 <div className="title">近期最受期待</div>
                 <div className="topimg">
-                  <div className="expected" onClick={() => { this.props.history.push('/movieDetail') }}>
-                    <img src={movieimg} className="rightimg" alt="" />
-                    <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
-                    <p className="date">6月28日</p>
-                  </div>
-                  <div className="expected">
-                    <img src={movieimg} className="rightimg" alt="" />
-                    <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
-                    <p className="date">6月28日</p>
-                  </div>
-                  <div className="expected">
-                    <img src={movieimg} className="rightimg" alt="" />
-                    <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
-                    <p className="date">6月28日</p>
-                  </div>
-                  <div className="expected">
-                    <img src={movieimg} className="rightimg" alt="" />
-                    <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
-                    <p className="date">6月28日</p>
-                  </div>
-                  <div className="expected">
-                    <img src={movieimg} className="rightimg" alt="" />
-                    <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
-                    <p className="date">6月28日</p>
-                  </div>
-                  <div className="expected">
-                    <img src={movieimg} className="rightimg" alt="" />
-                    <h5 className="name ellipsis">蜘蛛侠：英雄远征</h5>
-                    <p className="date">6月28日</p>
-                  </div>
+                  {
+                    this.state.expectList.map((item) => {
+                      return (
+                        <div className="expected" key={item.id} onClick={() => { this.props.history.push('/movieDetail') }}>
+                          <div className="expContent">
+                            <img src={handleImg(item.img)} className="rightimg" alt="" />
+                            <div className="wish-bg"></div>
+                            <div className="wish">{item.wish}人想看</div>
+                          </div>
+                          <h5 className="name ellipsis">{item.nm}</h5>
+                          <p className="date">{item.comingTitle.split(' ')[0]}</p>
+                        </div>
+                      )
+                    })
+                  }
                 </div>
               </div>
               <div className="come_list">
-                <div onClick={() => { this.props.history.push('/movieDetail') }}>
-                  <div className="time">6月13日 周四</div>
-                  <div className="list">
-                    <img src={movieimg} className="leftimg" alt="" />
-                    <div className="list_r">
-                      <div className="col">
-                        <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
-                        <div className="score"><span className="grade">19259</span>人想看</div>
-                        <div className="actor ellipsis">主演: 苏菲·特纳,詹姆斯·麦卡沃伊,迈克尔·法斯宾德</div>
-                        <div className="actor ellipsis">2019-06-15上映</div>
+                {
+                  this.state.comingList.map((item, index, arr) => {
+                    return (
+                      <div key={item.id}>
+                        {
+                          index === 0 ? <div className="time">{item.comingTitle.split(' ')[0]}</div> : (item.comingTitle === arr[index - 1].comingTitle ? '' : <div className="time">{item.comingTitle.split(' ')[0]}</div>)
+                        }
+                        <div className="list" onClick={() => { this.props.history.push('/movieDetail') }}>
+                          <img src={handleImg(item.img)} className="leftimg" alt="" />
+                          <div className="list_r">
+                            <div className="col">
+                              <div className="moviename ellipsis">
+                                {item.nm}
+                                {item.version === 'v3d imax' && <span className="u3d"></span>}
+                                {item.version === 'v3d' && <span className="p3d"></span>}
+                              </div>
+                              <div className="score"><span className="grade">{item.wish}</span>人想看</div>
+                              <div className="actor ellipsis">{item.star}</div>
+                              <div className="actor ellipsis">{item.showInfo}</div>
+                            </div>
+                            <div className="btn btn2">预售</div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="btn btn2">预售</div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div className="time">6月14日 周五</div>
-                  <div className="list">
-                    <img src={movieimg} className="leftimg" alt="" />
-                    <div className="list_r">
-                      <div className="col">
-                        <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
-                        <div className="score"><span className="grade">19259</span>人想看</div>
-                        <div className="actor ellipsis">主演: 苏菲·特纳,詹姆斯·麦卡沃伊,迈克尔·法斯宾德</div>
-                        <div className="actor ellipsis">2019-06-15上映</div>
-                      </div>
-                      <div className="btn btn2">预售</div>
-                    </div>
-                  </div>
-                  <div className="list">
-                    <img src={movieimg} className="leftimg" alt="" />
-                    <div className="list_r">
-                      <div className="col">
-                        <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
-                        <div className="score"><span className="grade">19259</span>人想看</div>
-                        <div className="actor ellipsis">主演: 苏菲·特纳,詹姆斯·麦卡沃伊,迈克尔·法斯宾德</div>
-                        <div className="actor ellipsis">2019-06-15上映</div>
-                      </div>
-                      <div className="btn btn2">预售</div>
-                    </div>
-                  </div>
-                  <div className="list">
-                    <img src={movieimg} className="leftimg" alt="" />
-                    <div className="list_r">
-                      <div className="col">
-                        <div className="moviename">X战警：黑凤凰<span className="u3d"></span></div>
-                        <div className="score"><span className="grade">19259</span>人想看</div>
-                        <div className="actor ellipsis">主演: 苏菲·特纳,詹姆斯·麦卡沃伊,迈克尔·法斯宾德</div>
-                        <div className="actor ellipsis">2019-06-15上映</div>
-                      </div>
-                      <div className="btn btn2">预售</div>
-                    </div>
-                  </div>
-                </div>
+                    )
+                  })
+                }
               </div>
             </div>
           </Tabs>

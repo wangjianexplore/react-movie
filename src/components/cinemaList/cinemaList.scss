@@ -19,6 +19,7 @@
         .price {
             color: #f03d37;
             font-size: 18px;
+            padding-left: 5px;
         }
 
         .yuan {
@@ -36,6 +37,22 @@
         margin-top: 6px;
     }
 
+    .recent {
+        font-size: 12px;
+        color: #999;
+        padding-top: 5px;
+    }
+    .promotion {
+        font-size: 12px;
+        color: #999;
+        padding-top: 5px;
+        display: flex;
+        .promotion_img {
+            width: 15px;
+            height: 14px;
+            padding-right: 5px;
+        }
+    }
     .label {
         height: 17px;
         line-height: 17px;

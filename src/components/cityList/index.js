@@ -1,23 +1,21 @@
 import React from 'react';
 import Header from "../header";
-import axios from 'axios';
+import api  from '../../utils/api';
 import './cityList.scss';
+import { connect } from 'react-redux';
+import store from '../../store';
 
 class CityList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            cities: {},
-            letter: []
-        };
+        this.state = {};
     }
     componentDidMount() {
-        this.getCitys();
+        !this.props.letter.length&&this.getCitys();
     }
     getCitys = () => {
-        let rm = this;
-        axios.get('https://bird.ioliu.cn/v2/?url=http://m.maoyan.com/dianying/cities.json').then(function (response) {
-            let data = response.data.cts;
+        api.get('/dianying/cities.json', {}, function(res) {
+            let data = res.cts;
             let sortData = {};
             let letterArr = [];
             data.forEach((item) => {
@@ -28,24 +26,26 @@ class CityList extends React.Component {
                 }
                 sortData[fn].push(item);
             });
-            rm.setState({
+            letterArr = letterArr.sort();
+            let action = {
+                type: 'cities_data',
                 cities: sortData,
-                letter: letterArr.sort()
-            });
-        }).catch(function (error) {
-            console.log(error);
+                letter: letterArr
+            };
+            store.dispatch(action);
         });
     }
     handlePosition = (id) => {
         let offettop = document.getElementById(id).offsetTop;
-        document.documentElement.scrollTop ? document.documentElement.scrollTop = offettop + 1 : document.body.scrollTop = offettop + 1;
+        !!document.documentElement ? document.documentElement.scrollTop = offettop + 1 : document.body.scrollTop = offettop + 1;
     }
     render() {
+        const { cities, letter} = this.props;
         let itemLi = [];
         let allLi = [];
-        this.state.letter.forEach((item) => {
+        letter.forEach((item) => {
             allLi.push(<li className="letter" id={item} key={item}>{item}</li>);
-            itemLi = this.state.cities[item].map(ite => {
+            itemLi = cities[item].map(ite => {
                 return (
                     <li key={ite.id}>{ite.nm}</li>
                 )
@@ -62,9 +62,9 @@ class CityList extends React.Component {
                 </div>
                 <div className="nav">
                     {
-                        this.state.letter.map(item => {
+                        letter.map(item => {
                             return (
-                                <div className="nav-letter" key={item} onClick={this.handlePosition.bind(this,item)} data-id={item}>{item}</div>
+                                <div className="nav-letter" key={item} onClick={this.handlePosition.bind(this, item)} data-id={item}>{item}</div>
                             );
                         })
                     }
@@ -73,5 +73,11 @@ class CityList extends React.Component {
         );
     }
 }
+const mapState = (state) => ({
+    cities: state.cities,
+    letter: state.letter
+});
 
-export default CityList;
+const mapDispatch = (dispatch) => ({
+})
+export default connect(mapState, mapDispatch)(CityList);
