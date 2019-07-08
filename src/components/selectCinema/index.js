@@ -20,16 +20,23 @@ class SelectCinema extends React.Component {
       showNum: 0,
       districtIndex: 0,
       subwayIndex: 0,
-      districtItemId: 0,
-      subwayItemId: 0,
+      areaId: -1,
+      subwayItemId: -1,
       districtItem: [],
       subwayItem: [],
       brandIndex: 0,
-      featureIndex: -1,
-      feature2Index: -1
+      serviceId: -1,
+      hallTypeId: -1,
+      districtId: -1,
+      areaname: '全城',
+      busname: '',
+      subwayname: '',
+      brandname: '品牌',
+      lineId: -1,
+      brandId: -1
     }
   }
-  componentDidMount () {
+  componentDidMount() {
     this.getFilterCinemas();
   }
   getFilterCinemas = () => {
@@ -42,12 +49,21 @@ class SelectCinema extends React.Component {
       });
     });
   }
-  render () {
+  // districtCiname = (id) => {
+  //   this.setState({
+  //     areaId: id,
+  //     allcityflag: false
+  //   }, () => {
+  //     this.pr(this.props.date, this.props.index);
+  //   });
+  // }
+  render() {
     const tabs = [{ title: '商区' }, { title: '地铁站' }]
     let allcity = '',
       brandinfo = '',
       feature = ''
-    let { district = { subItems: [] }, subway = { subItems: [] }, brand = { subItems: [] }, service = { subItems: [] }, hallType = { subItems: [] } } = this.state.cinemaObj
+    let { district = { subItems: [] }, subway = { subItems: [] }, brand = { subItems: [] }, service = { subItems: [] }, hallType = { subItems: [] } } = this.state.cinemaObj;
+    let { getCinema, date, index } = this.props;
     if (this.state.allcityflag && this.state.showNum === 1) {
       allcity = (
         <div className="allcity">
@@ -75,6 +91,8 @@ class SelectCinema extends React.Component {
                       onClick={() => {
                         this.setState({
                           districtIndex: index,
+                          districtId: item.id,
+                          busname: item.name,
                           districtItem: item.subItems ? item.subItems : []
                         })
                       }}
@@ -85,18 +103,24 @@ class SelectCinema extends React.Component {
                 })}
               </div>
               <div className="menu_right">
-                {this.state.districtItem.map((item, index) => {
+                {this.state.districtItem.map((item) => {
                   return (
                     <div className={
-                      item.id === this.state.districtItemId
+                      item.id === this.state.areaId
                         ? 'menu_item_r menu_item_r_active'
                         : 'menu_item_r'
                     }
                       key={item.id}
                       onClick={() => {
-                        this.setState({
-                          districtItemId: item.id
-                        })
+                        this.setState((state) => {
+                          return {
+                            areaId: item.id,
+                            allcityflag: false,
+                            areaname: item.id === -1 ? state.busname : item.name
+                          }
+                        }, () => {
+                          getCinema(date, index);
+                        });
                       }}>
                       <span className="menu_item_r_name">{item.name}</span>
                       <span>{item.count}</span>
@@ -119,6 +143,8 @@ class SelectCinema extends React.Component {
                       onClick={() => {
                         this.setState({
                           subwayIndex: index,
+                          subwayname: item.name,
+                          lineId: item.id,
                           subwayItem: item.subItems ? item.subItems : []
                         })
                       }}
@@ -129,7 +155,7 @@ class SelectCinema extends React.Component {
                 })}
               </div>
               <div className="menu_right">
-                {this.state.subwayItem.map((item, index) => {
+                {this.state.subwayItem.map((item) => {
                   return (
                     <div className={
                       item.id === this.state.subwayItemId
@@ -138,8 +164,14 @@ class SelectCinema extends React.Component {
                     }
                       key={item.id}
                       onClick={() => {
-                        this.setState({
-                          subwayItemId: item.id
+                        this.setState((state) => {
+                          return {
+                            subwayItemId: item.id,
+                            allcityflag: false,
+                            areaname: item.id === -1 ? state.subwayname : item.name
+                          }
+                        }, () => {
+                          getCinema(date, index);
                         })
                       }}>
                       <span className="menu_item_r_name">{item.name}</span>
@@ -154,13 +186,21 @@ class SelectCinema extends React.Component {
       )
     }
     if (this.state.brandflag && this.state.showNum === 2) {
-      console.log(brand);
       brandinfo = (
         <div className="brand">
           {
-            brand.subItems.map((item, index) => {
+            brand.subItems.map((item, i) => {
               return (
-                <Flex key={item.id} className={index === this.state.brandIndex && 'brandactive'} onClick={() => { this.setState({ brandIndex: index }) }}>
+                <Flex key={item.id} className={i === this.state.brandIndex && 'brandactive'} onClick={() => {
+                  this.setState({
+                    brandIndex: i,
+                    brandflag: false,
+                    brandId: item.id,
+                    brandname: item.id === -1 ? '品牌' : item.name
+                  }, () => {
+                    getCinema(date, index);
+                  })
+                }}>
                   <Flex.Item>{item.name}</Flex.Item>
                   <Flex.Item>{item.count}</Flex.Item>
                 </Flex>
@@ -179,8 +219,8 @@ class SelectCinema extends React.Component {
               {
                 service.subItems.map((item, index) => {
                   return (
-                    <Flex.Item key={item.id} className={this.state.featureIndex===item.id&&'flexactive'} onClick={()=> {
-                      this.setState({featureIndex:item.id})
+                    <Flex.Item key={item.id} className={this.state.serviceId === item.id && 'flexactive'} onClick={() => {
+                      this.setState({ serviceId: item.id })
                     }}>{item.name}</Flex.Item>
                   )
                 })
@@ -191,8 +231,8 @@ class SelectCinema extends React.Component {
               {
                 hallType.subItems.map((item) => {
                   return (
-                    <Flex.Item key={item.id} className={this.state.feature2Index===item.id?'ellipsis flexactive':'ellipsis'} onClick={()=> {
-                      this.setState({feature2Index:item.id})
+                    <Flex.Item key={item.id} className={this.state.hallTypeId === item.id ? 'ellipsis flexactive' : 'ellipsis'} onClick={() => {
+                      this.setState({ hallTypeId: item.id })
                     }}>{item.name}</Flex.Item>
                   )
                 })
@@ -201,10 +241,15 @@ class SelectCinema extends React.Component {
           </div>
           <Flex className="fea_btn" justify="between">
             <Flex.Item>
-              <Button>重置</Button>
+              <Button onClick={() => {
+                this.setState({
+                  serviceId: -1,
+                  hallTypeId: -1
+                })
+              }}>重置</Button>
             </Flex.Item>
             <Flex.Item>
-              <Button className="sure">确定</Button>
+              <Button className="sure" onClick={() => { this.setState({ featureflag: false }, () => { getCinema(date, index) }) }}>确定</Button>
             </Flex.Item>
           </Flex>
         </div>
@@ -220,7 +265,7 @@ class SelectCinema extends React.Component {
         >
           <div className="tab">
             <div
-              className="item"
+              className={this.state.allcityflag||this.state.showNum===1?'item item_active':'item'}
               onClick={() => {
                 this.setState(state => ({
                   allcityflag: !state.allcityflag,
@@ -230,11 +275,11 @@ class SelectCinema extends React.Component {
                 }))
               }}
             >
-              全城
+              {this.state.areaname}
               <span className="city-entry-arrow" />
             </div>
             <div
-              className="item"
+              className={this.state.brandflag||this.state.showNum===2?'item ellipsis item_active':'item ellipsis'}
               onClick={() => {
                 this.setState(state => ({
                   allcityflag: false,
@@ -244,11 +289,11 @@ class SelectCinema extends React.Component {
                 }))
               }}
             >
-              品牌
+              {this.state.brandname}
               <span className="city-entry-arrow" />
             </div>
             <div
-              className="item"
+              className={this.state.featureflag||this.state.showNum===3?'item item_active':'item'}
               onClick={() => {
                 this.setState(state => ({
                   allcityflag: false,

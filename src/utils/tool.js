@@ -59,6 +59,7 @@ let tool = {
         } else {
             return '';
         }
-    }
+    },
+    token: 'H2DwJBD3buK2V_VyQbWvEdutSn0AAAAApQgAAHyMYuOz8oIGyIDhZ3_NX29YyDaXyB0JsItIVGbRXx8xNVSsMPT4HrPx1l-gt1hVwg'
 }
 module.exports = tool;

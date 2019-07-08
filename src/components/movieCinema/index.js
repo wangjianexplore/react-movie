@@ -21,13 +21,17 @@ class MovieCinema extends React.Component {
       cinemaList: [],
       showDays: [],
       dateIndex: 0,
-      loadingflag: false
+      loadingflag: false,
+      date: formatDate(new Date(), 'yyyy-MM-dd', true)
     };
   }
   componentDidMount() {
     window.addEventListener('scroll', this.handleFixed, false);
     this.getDetailmovie();
-    this.getCinema(formatDate(new Date(), 'yyyy-MM-dd'), 0);
+    // this.setState({
+    //   selDate: formatDate(new Date(), 'yyyy-MM-dd')
+    // });
+    this.getCinema(this.state.date, 0);
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleFixed, false);
@@ -52,9 +56,14 @@ class MovieCinema extends React.Component {
     let y = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
     y > 230 ? this.setState({ fixedFlag: true }) : this.setState({ fixedFlag: false });
   }
-  getCinema = (date, index) => {
+  getCinema = (date, index, initflag = false) => {
     let rm = this;
+    // console.log(this.refs.selectCinema);
+    // console.log(date);
+    // console.log(this.refs.selectCinema.state.areaId);
+    let { districtId, areaId, subwayItemId, lineId, brandId, serviceId, hallTypeId } = this.refs.selectCinema.state;
     rm.setState({
+      date: date,
       cinemaList: [],
       dateIndex: index,
       loadingflag: true
@@ -65,13 +74,13 @@ class MovieCinema extends React.Component {
       day: date,
       offset: 0,
       limit: 20,
-      districtId: -1,
-      lineId: -1,
-      hallType: -1,
-      brandId: -1,
-      serviceId: -1,
-      areaId: -1,
-      stationId: -1,
+      districtId: districtId,
+      lineId: lineId,
+      hallType: hallTypeId,
+      brandId: brandId,
+      serviceId: serviceId,
+      areaId: areaId,
+      stationId: subwayItemId,
       item: '',
       updateShowDay: true,
       reqId: todaytime,
@@ -84,7 +93,7 @@ class MovieCinema extends React.Component {
       });
       if (data.showDays) {
         let showDaysArr = data.showDays.dates;
-        !data.cinemas.length && rm.getCinema(data.showDays.dates[0].date, index);
+        !data.cinemas.length && initflag && rm.getCinema(showDaysArr[0].date, index);
         rm.setState({
           showDays: showDaysArr
         });
@@ -139,10 +148,10 @@ class MovieCinema extends React.Component {
                 }
               </Flex>
             </div>
-            <SelectCinema />
+            <SelectCinema ref="selectCinema" getCinema={this.getCinema} date={this.state.date} index={this.state.dateIndex} />
           </div>
-          <Loading loadingflag={this.state.loadingflag}/>
-          <CinemaList cinemaList={this.state.cinemaList} />
+          <Loading loadingflag={this.state.loadingflag} />
+          <CinemaList cinemaList={this.state.cinemaList} loadingflag={this.state.loadingflag}/>
         </div>
       </div>
     );

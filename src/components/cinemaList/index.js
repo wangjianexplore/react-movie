@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import hui from '../../assets/images/hui.png';
 import ka from '../../assets/images/ka.png';
+import NoInfo from '../noInfo';
 
 class CinemaList extends React.Component {
     constructor(props) {
@@ -56,6 +57,7 @@ class CinemaList extends React.Component {
                         )
                     })
                 }
+                {!this.props.loadingflag&&!this.props.cinemaList.length&&<NoInfo noInfoTitle="暂无符合条件的影院"/>}
             </div>
         );
     }

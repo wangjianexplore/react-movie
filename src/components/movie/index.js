@@ -4,7 +4,7 @@ import Footer from '../footer'
 import './movie.scss';
 import { Tabs } from 'antd-mobile';
 import api from '../../utils/api';
-import { handleImg } from '../../utils/tool';
+import { handleImg, token } from '../../utils/tool';
 
 class Movie extends React.Component {
   constructor(props) {
@@ -41,9 +41,9 @@ class Movie extends React.Component {
       ci: 10,
       limit: 10,
       offset: 0,
-      token: 'H2DwJBD3buK2V_VyQbWvEdutSn0AAAAApQgAAHyMYuOz8oIGyIDhZ3_NX29YyDaXyB0JsItIVGbRXx8xNVSsMPT4HrPx1l-gt1hVwg'
+      token: token
     }, function (res) {
-      rm.setState({
+      res.coming && rm.setState({
         expectList: res.coming
       });
     });
@@ -52,7 +52,7 @@ class Movie extends React.Component {
     let rm = this;
     api.get('/ajax/comingList', {
       ci: 10,
-      token: 'H2DwJBD3buK2V_VyQbWvEdutSn0AAAAApQgAAHyMYuOz8oIGyIDhZ3_NX29YyDaXyB0JsItIVGbRXx8xNVSsMPT4HrPx1l-gt1hVwg'
+      token: token
     }, function (res) {
       rm.setState({
         comingList: res.coming
