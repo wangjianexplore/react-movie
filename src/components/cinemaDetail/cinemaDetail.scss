@@ -44,6 +44,7 @@
         .swiper-container {
             padding: 20px 15px 20px 5px;
             transform: translateZ(0);
+            height: 95px;
         }
 
         .post-bg {
@@ -75,13 +76,15 @@
 
         .swiper-slide {
             height: 95px;
+            width: 65px;
+            margin-left: 15px;
 
             &:first-child {
                 margin-left: 0 !important;
             }
 
             .post {
-                // width: 65px;
+                width: 100%;
                 transition: transform .3s;
                 position: relative;
 
@@ -155,7 +158,8 @@
         white-space: nowrap;
 
         .am-flexbox {
-            overflow: scroll;
+            overflow-x: scroll;
+            overflow-y: hidden;
 
             &::-webkit-scrollbar {
                 display: none;

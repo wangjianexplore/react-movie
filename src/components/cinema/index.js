@@ -5,37 +5,46 @@ import CinemaList from '../cinemaList';
 import SelectCinema from '../selectCinema';
 import "./cinema.scss";
 import api from '../../utils/api';
+import { formatDate } from '../../utils/tool';
+import Loading from '../loading';
 
 class Cinema extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cinemaList: []
+      cinemaList: [],
+      loadingflag: false
     };
   }
   componentDidMount() {
-    this.getCinemaList();
+    this.getCinema();
   }
-  getCinemaList = () => {
+  getCinema = () => {
     let rm = this;
+    rm.setState({
+      loadingflag: true
+    });
+    let { districtId, areaId, subwayItemId, lineId, brandId, serviceId, hallTypeId } = this.refs.selectCinema.state;
+    let todaytime = new Date().getTime();
     api.get('/ajax/cinemaList', {
-      day: '2019-07-08',
+      day: formatDate(new Date(), 'yyyy-MM-dd'),
       offset: 0,
       limit: 20,
-      districtId: -1,
-      lineId: -1,
-      hallType: -1,
-      brandId: -1,
-      serviceId: -1,
-      areaId: -1,
-      stationId: -1,
+      districtId: districtId,
+      lineId: lineId,
+      hallType: hallTypeId,
+      brandId: brandId,
+      serviceId: serviceId,
+      areaId: areaId,
+      stationId: subwayItemId,
       item: '',
       updateShowDay: true,
-      reqId: 1562600722956,
+      reqId: todaytime,
       cityId: 10
     }, function (res) {
       rm.setState({
-        cinemaList: res.cinemas
+        cinemaList: res.cinemas,
+        loadingflag: false,
       });
     });
   }
@@ -54,8 +63,11 @@ class Cinema extends React.Component {
               搜影院
             </div>
           </div>
-          <SelectCinema />
-          <CinemaList cinemaList={this.state.cinemaList} />
+          <SelectCinema ref="selectCinema" getCinema={this.getCinema} />
+          <div className="contentList">
+            <Loading loadingflag={this.state.loadingflag} />
+            {!this.state.loadingflag && <CinemaList cinemaList={this.state.cinemaList} loadingflag={this.state.loadingflag} />}
+          </div>
         </div>
         <Footer num="1" />
       </div>

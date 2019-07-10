@@ -89,11 +89,17 @@ class SelectCinema extends React.Component {
                       }
                       key={item.id}
                       onClick={() => {
-                        this.setState({
-                          districtIndex: index,
-                          districtId: item.id,
-                          busname: item.name,
-                          districtItem: item.subItems ? item.subItems : []
+                        this.setState((state) => {
+                          return {
+                            districtIndex: index,
+                            districtId: item.id,
+                            busname: item.name,
+                            allcityflag: item.id === -1 ? false : true,
+                            areaname: item.id === -1 ? item.name : state.areaname,
+                            districtItem: item.subItems ? item.subItems : []
+                          }
+                        }, () => {
+                          item.id === -1 && getCinema(date, index);
                         })
                       }}
                     >
@@ -141,11 +147,15 @@ class SelectCinema extends React.Component {
                       }
                       key={item.id}
                       onClick={() => {
-                        this.setState({
-                          subwayIndex: index,
-                          subwayname: item.name,
-                          lineId: item.id,
-                          subwayItem: item.subItems ? item.subItems : []
+                        this.setState((state) => {
+                          return {
+                            subwayIndex: index,
+                            subwayname: item.name,
+                            lineId: item.id,
+                            allcityflag: item.id === -1 ? false : true,
+                            areaname: item.id === -1 ? item.name : state.areaname,
+                            subwayItem: item.subItems ? item.subItems : []
+                          }
                         })
                       }}
                     >
@@ -265,7 +275,7 @@ class SelectCinema extends React.Component {
         >
           <div className="tab">
             <div
-              className={this.state.allcityflag||this.state.showNum===1?'item item_active':'item'}
+              className={this.state.allcityflag || this.state.showNum === 1 ? 'item item_active' : 'item'}
               onClick={() => {
                 this.setState(state => ({
                   allcityflag: !state.allcityflag,
@@ -279,7 +289,7 @@ class SelectCinema extends React.Component {
               <span className="city-entry-arrow" />
             </div>
             <div
-              className={this.state.brandflag||this.state.showNum===2?'item ellipsis item_active':'item ellipsis'}
+              className={this.state.brandflag || this.state.showNum === 2 ? 'item ellipsis item_active' : 'item ellipsis'}
               onClick={() => {
                 this.setState(state => ({
                   allcityflag: false,
@@ -293,7 +303,7 @@ class SelectCinema extends React.Component {
               <span className="city-entry-arrow" />
             </div>
             <div
-              className={this.state.featureflag||this.state.showNum===3?'item item_active':'item'}
+              className={this.state.featureflag || this.state.showNum === 3 ? 'item item_active' : 'item'}
               onClick={() => {
                 this.setState(state => ({
                   allcityflag: false,
@@ -331,9 +341,13 @@ class SelectCinema extends React.Component {
 }
 
 SelectCinema.defaultProps = {
-  getChildFlag: () => { }
+  getChildFlag: () => { },
+  date: '',
+  index: 0
 }
 SelectCinema.propTypes = {
-  getChildFlag: PropTypes.func
+  getChildFlag: PropTypes.func,
+  date: PropTypes.string,
+  index: PropTypes.number
 }
 export default SelectCinema

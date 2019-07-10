@@ -8,7 +8,7 @@ class NoInfo extends React.Component {
     }
     render() {
         return (
-            <div className="main">
+            <div className="noInfo">
                 <div className="tip-text">{this.props.noInfoTitle}</div>
             </div>
         )

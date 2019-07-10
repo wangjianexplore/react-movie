@@ -68,7 +68,7 @@ class Movie extends React.Component {
       <div className="movie">
         <Header title="电影" arrow={false} />
         <div className="movie_content">
-          <div className="city" onClick={() => { this.props.history.push('./cityList') }}>
+          <div className="city" onClick={() => { this.props.history.push('/cityList') }}>
             <span className="ellipsis city-name">上海</span>
             <i className="city-entry-arrow"></i>
           </div>

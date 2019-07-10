@@ -28,9 +28,6 @@ class MovieCinema extends React.Component {
   componentDidMount() {
     window.addEventListener('scroll', this.handleFixed, false);
     this.getDetailmovie();
-    // this.setState({
-    //   selDate: formatDate(new Date(), 'yyyy-MM-dd')
-    // });
     this.getCinema(this.state.date, 0);
   }
   componentWillUnmount() {
@@ -58,9 +55,6 @@ class MovieCinema extends React.Component {
   }
   getCinema = (date, index, initflag = false) => {
     let rm = this;
-    // console.log(this.refs.selectCinema);
-    // console.log(date);
-    // console.log(this.refs.selectCinema.state.areaId);
     let { districtId, areaId, subwayItemId, lineId, brandId, serviceId, hallTypeId } = this.refs.selectCinema.state;
     rm.setState({
       date: date,
@@ -68,7 +62,7 @@ class MovieCinema extends React.Component {
       dateIndex: index,
       loadingflag: true
     });
-    let todaytime = (new Date()).getTime();
+    let todaytime = new Date().getTime();
     api.post('/ajax/movie?forceUpdate=' + todaytime, {
       movieId: rm.props.match.params.id,
       day: date,

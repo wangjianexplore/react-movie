@@ -23,7 +23,7 @@ let routes = [
         component: MovieCinema
     },
     {
-        path: '/cinemaDetail',
+        path: '/cinemaDetail/:id',
         component: CinemaDetail
     },
     {
