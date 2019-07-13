@@ -167,7 +167,6 @@
 
             img {
                 height: 100%;
-                width: 100%;
             }
         }
 
@@ -175,7 +174,9 @@
             width: 125px;
             height: 70px;
             position: relative;
-
+            img {
+                width: 100%;
+            }
             .icon--bofang {
                 position: absolute;
                 right: 4px;
@@ -186,7 +187,6 @@
         }
 
         .media-img {
-            width: 93px;
             height: 72px;
         }
     }

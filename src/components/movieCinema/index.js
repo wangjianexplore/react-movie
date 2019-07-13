@@ -5,7 +5,6 @@ import sdmax from '../../assets/images/sdmax.png';
 import CinemaList from '../cinemaList';
 import SelectCinema from '../selectCinema';
 import { Flex } from 'antd-mobile';
-import { Link } from 'react-router-dom';
 import api from '../../utils/api';
 import { handleImg, showTime, formatDate } from '../../utils/tool';
 import Loading from '../loading';
@@ -105,31 +104,29 @@ class MovieCinema extends React.Component {
       <div className="movieCinema">
         <Header title={detailMovie.nm} position="relative" />
         <div className="mc_main">
-          <Link to="/movieDetail">
-            <div className="movie-detail">
-              <div className="movie-filter"></div>
-              <div className="poster-bg"></div>
-              <div className="mc_detail">
-                <div className="poster">
-                  <img className="poster_img" src={img} alt="" />
-                </div>
-                <div className="mc_content">
-                  <div className="title ellipsis">{detailMovie.nm}</div>
-                  <div className="title-en-name ellipsis">{detailMovie.enm}</div>
-                  {detailMovie.sc ? <div className="score ellipsis">{detailMovie.sc}<span className="snum">({detailMovie.snum}万人评)</span></div> : <div className="score ellipsis"><span className="snum snum-no">暂无评分</span></div>}
-                  <div className="type ellipsis">
-                    <span>{detailMovie.cat}</span>
-                    <div className="type-group">
-                      {detailMovie.version && <img className="type_img" src={sdmax} alt="" />}
-                    </div>
-                  </div>
-                  <div className="title-en-name ellipsis">{detailMovie.src}/{detailMovie.dur}分钟</div>
-                  <div className="title-en-name ellipsis">{detailMovie.pubDesc}</div>
-                </div>
+          <div className="movie-detail" onClick={() => { this.props.history.push('/movieDetail/'+detailMovie.id) }}>
+            <div className="movie-filter"></div>
+            <div className="poster-bg"></div>
+            <div className="mc_detail">
+              <div className="poster">
+                <img className="poster_img" src={img} alt="" />
               </div>
-              <span className="iconfont icon-fanhui-copy-copy"></span>
+              <div className="mc_content">
+                <div className="title ellipsis">{detailMovie.nm}</div>
+                <div className="title-en-name ellipsis">{detailMovie.enm}</div>
+                {detailMovie.sc ? <div className="score ellipsis">{detailMovie.sc}<span className="snum">({detailMovie.snum}万人评)</span></div> : <div className="score ellipsis"><span className="snum snum-no">暂无评分</span></div>}
+                <div className="type ellipsis">
+                  <span>{detailMovie.cat}</span>
+                  <div className="type-group">
+                    {detailMovie.version && <img className="type_img" src={sdmax} alt="" />}
+                  </div>
+                </div>
+                <div className="title-en-name ellipsis">{detailMovie.src}/{detailMovie.dur}分钟</div>
+                <div className="title-en-name ellipsis">{detailMovie.pubDesc}</div>
+              </div>
             </div>
-          </Link>
+            <span className="iconfont icon-fanhui-copy-copy"></span>
+          </div>
           <div id="fixedId" className={this.state.fixedFlag ? 'fixedClass' : ''}>
             <div className="showDays" style={{ position: 'relative', zIndex: 100 }}>
               <Flex>
@@ -145,7 +142,7 @@ class MovieCinema extends React.Component {
             <SelectCinema ref="selectCinema" getCinema={this.getCinema} date={this.state.date} index={this.state.dateIndex} />
           </div>
           <Loading loadingflag={this.state.loadingflag} />
-          <CinemaList cinemaList={this.state.cinemaList} loadingflag={this.state.loadingflag}/>
+          <CinemaList cinemaList={this.state.cinemaList} loadingflag={this.state.loadingflag} />
         </div>
       </div>
     );
