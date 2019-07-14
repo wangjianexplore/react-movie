@@ -5,6 +5,8 @@ import './movie.scss';
 import { Tabs } from 'antd-mobile';
 import api from '../../utils/api';
 import { handleImg, token } from '../../utils/tool';
+import store from '../../store';
+import { connect } from 'react-redux';
 
 class Movie extends React.Component {
   constructor(props) {
@@ -25,6 +27,18 @@ class Movie extends React.Component {
     this.getMovieOnInfoList();
     this.getExpectList();
     this.getComingList();
+    this.initialPage(this.props.initialPage);
+  }
+  initialPage = (init) => {
+    if (init === 1) {
+      this.setState((state) => ({
+        linestyle: Object.assign({}, state.linestyle, { left: '60%', })
+      }));
+    } else {
+      this.setState((state) => ({
+        linestyle: Object.assign({}, state.linestyle, { left: '0', })
+      }));
+    }
   }
   getMovieOnInfoList = () => {
     let rm = this;
@@ -73,7 +87,7 @@ class Movie extends React.Component {
             <i className="city-entry-arrow"></i>
           </div>
           <div className="search-icon"></div>
-          <Tabs tabs={tabs} initialPage={0} animated={false} swipeable={false} useOnPan={false} tabBarInactiveTextColor={'#666'} tabBarActiveTextColor={'#ef4238'} tabBarUnderlineStyle={this.state.linestyle} onTabClick={this.lineHandle}>
+          <Tabs tabs={tabs} initialPage={this.props.initialPage} animated={false} swipeable={false} useOnPan={false} tabBarInactiveTextColor={'#666'} tabBarActiveTextColor={'#ef4238'} tabBarUnderlineStyle={this.state.linestyle} onTabClick={this.lineHandle}>
             <div className="being">
               {
                 this.state.movieList.map((item) => {
@@ -82,16 +96,14 @@ class Movie extends React.Component {
                       <img src={handleImg(item.img)} className="leftimg" alt="" />
                       <div className="list_r">
                         <div className="col">
-                          {
-                            item.version && <div className="moviename">{item.nm}<span className="u3d"></span></div>
-                          }
+                          <div className="moviename">{item.nm}{item.version && <span className="u3d"></span>}</div>
                           {
                             item.sc ? <div className="score">观众评<span className="grade">{item.sc}</span></div> : <div className="score">暂无评分</div>
                           }
                           <div className="actor ellipsis">主演: {item.star}</div>
                           <div className="actor ellipsis">{item.showInfo}</div>
                         </div>
-                        <div className="btn">购票</div>
+                        {item.globalReleased ? <div className="btn">购票</div> : <div className="btn btn2">预售</div>}
                       </div>
                     </div>
                   );
@@ -105,7 +117,7 @@ class Movie extends React.Component {
                   {
                     this.state.expectList.map((item) => {
                       return (
-                        <div className="expected" key={item.id} onClick={() => { this.props.history.push('/movieDetail') }}>
+                        <div className="expected" key={item.id} onClick={() => { this.props.history.push('/movieDetail/' + item.id) }}>
                           <div className="expContent">
                             <img src={handleImg(item.img)} className="rightimg" alt="" />
                             <div className="wish-bg"></div>
@@ -127,7 +139,7 @@ class Movie extends React.Component {
                         {
                           index === 0 ? <div className="time">{item.comingTitle.split(' ')[0]}</div> : (item.comingTitle === arr[index - 1].comingTitle ? '' : <div className="time">{item.comingTitle.split(' ')[0]}</div>)
                         }
-                        <div className="list" onClick={() => { this.props.history.push('/movieDetail') }}>
+                        <div className="list" onClick={() => { this.props.history.push('/movieDetail/' + item.id) }}>
                           <img src={handleImg(item.img)} className="leftimg" alt="" />
                           <div className="list_r">
                             <div className="col">
@@ -140,7 +152,9 @@ class Movie extends React.Component {
                               <div className="actor ellipsis">{item.star}</div>
                               <div className="actor ellipsis">{item.showInfo}</div>
                             </div>
-                            <div className="btn btn2">预售</div>
+                            {
+                              item.showst === 4 ? <div className="btn btn2" onClick={(e) => { e.stopPropagation(); this.props.history.push('/movieCinema/' + item.id) }}>预售</div> : <div className="btn btn3">想看</div>
+                            }
                           </div>
                         </div>
                       </div>
@@ -156,18 +170,17 @@ class Movie extends React.Component {
     );
   }
   lineHandle = (tab, index) => {
-    if (index) {
-      let obj = Object.assign({}, this.state.linestyle, { left: '60%', });
-      this.setState({
-        linestyle: obj
-      });
-    } else {
-      let obj = Object.assign({}, this.state.linestyle, { left: '0' })
-      this.setState({
-        linestyle: obj
-      });
+    let action = {
+      type: 'initialPage',
+      initialPage: index
     }
+    store.dispatch(action);
+    this.initialPage(index);
   }
 }
 
-export default Movie;
+const mapState = (state) => ({
+  initialPage: state.initialPage
+})
+
+export default connect(mapState)(Movie);

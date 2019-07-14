@@ -7,6 +7,7 @@ import 'swiper/dist/css/swiper.css';
 import { Flex } from 'antd-mobile';
 import api from '../../utils/api';
 import { handleImg } from '../../utils/tool';
+import { connect } from 'react-redux'
 
 class CinemaDetail extends React.Component {
     constructor(props) {
@@ -28,7 +29,8 @@ class CinemaDetail extends React.Component {
     getCinemaDetail = () => {
         let rm = this;
         api.get('/ajax/cinemaDetail', {
-            cinemaId: this.props.match.params.id
+            cinemaId: this.props.match.params.id,
+            movieId: this.props.match.params.movieId
         }, function (res) {
             let data = res;
             rm.setState({
@@ -41,6 +43,7 @@ class CinemaDetail extends React.Component {
                 plist: data.showData.movies[data.movieIndex].shows[0].plist
             });
             new Swiper('.swiper-container', {
+                initialSlide: data.movieIndex,
                 slidesPerView: 5,
                 setWrapperSize: true,
                 spaceBetween: 10,
@@ -51,6 +54,7 @@ class CinemaDetail extends React.Component {
     }
     render() {
         let { cinemaData, movies, moviesFirst, shows, showsindex, plist } = this.state;
+        let { sellPrice } = this.props;
         return (
             <div className="cinemaDetail">
                 <Header position="relative" title={cinemaData.nm} />
@@ -126,7 +130,7 @@ class CinemaDetail extends React.Component {
                                         <Flex.Item className="price">
                                             <div className="sellPr">
                                                 <span className="d">¥</span>
-                                                <span>{item.vipPrice}</span>
+                                                <span>{sellPrice}</span>
                                                 <span className="vipPrice">
                                                     <span className="icon">折扣价</span>
                                                 </span>
@@ -147,4 +151,8 @@ class CinemaDetail extends React.Component {
     }
 }
 
-export default CinemaDetail;
+const mapSatet = (state) => ({
+    sellPrice: state.sellPrice
+});
+
+export default connect(mapSatet)(CinemaDetail);

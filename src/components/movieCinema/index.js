@@ -142,7 +142,7 @@ class MovieCinema extends React.Component {
             <SelectCinema ref="selectCinema" getCinema={this.getCinema} date={this.state.date} index={this.state.dateIndex} />
           </div>
           <Loading loadingflag={this.state.loadingflag} />
-          <CinemaList cinemaList={this.state.cinemaList} loadingflag={this.state.loadingflag} />
+          <CinemaList cinemaList={this.state.cinemaList} movieId={detailMovie.id} loadingflag={this.state.loadingflag} />
         </div>
       </div>
     );

@@ -61,7 +61,7 @@ class MovieDetail extends React.Component {
                     </div>
                 </div>
                 <div className="purchase">
-                    <div className="pru-btn" onClick={() => { this.props.history.push('/movieCinema/'+detailMovie.id) }}>特惠购票</div>
+                    <div className="pru-btn" onClick={() => { this.props.history.push('/movieCinema/' + detailMovie.id) }}>特惠购票</div>
                     <div className="intro">
                         <div className="content" style={{ maxHeight: this.state.arrowflag && 'none' }}>
                             <p>{detailMovie.dra}</p>
@@ -72,15 +72,15 @@ class MovieDetail extends React.Component {
                 <div className="media">
                     <h3>媒体库</h3>
                     <Flex>
-                        <Flex.Item className="media-video">
+                        {detailMovie.videoImg && <Flex.Item className="media-video">
                             <img src={detailMovie.videoImg} alt="" />
                             <i className="iconfont icon--bofang"></i>
-                        </Flex.Item>
+                        </Flex.Item>}
                         {
-                            this.state.photos.map((item) => {
+                            this.state.photos.map((item, index) => {
                                 let itemimg = handleImg(item)
                                 return (
-                                    <Flex.Item className="media-img">
+                                    <Flex.Item className="media-img" key={index}>
                                         <img src={itemimg} alt="" />
                                     </Flex.Item>
                                 )

@@ -19,17 +19,18 @@ class CinemaList extends React.Component {
     render() {
         // if (this.state.redirectFlag) return (<Redirect to='/cinemaDetail'/>);
         // onClick={() => {this.setState({redirectFlag: true})}}
+        let { cinemaList, loadingflag, movieId } = this.props;
         return (
             <div className="infolist">
                 {
-                    this.props.cinemaList.map((item) => {
+                    cinemaList.map((item) => {
                         return (
-                            <div className="listitem" key={item.id} onClick={() => { this.props.history.push('/cinemaDetail/' + item.id) }}>
+                            <div className="listitem" key={item.id} onClick={() => { this.props.history.push('/cinemaDetail/' + item.id + '/' + movieId) }}>
                                 <div className="item_wrap">
                                     <div className="title">
                                         <span>{item.nm}</span>
                                         <span className="price">{item.sellPrice}</span>
-                                        <span className="yuan">元</span>
+                                        <span className="yuan">元起</span>
                                     </div>
                                     <div className="location">
                                         <div className="loca_l ellipsis">
@@ -56,17 +57,19 @@ class CinemaList extends React.Component {
                         )
                     })
                 }
-                {!this.props.loadingflag && !this.props.cinemaList.length && <NoInfo noInfoTitle="暂无符合条件的影院" />}
+                {!loadingflag && !cinemaList.length && <NoInfo noInfoTitle="暂无符合条件的影院" />}
             </div>
         );
     }
 }
 CinemaList.defaultProps = {
     cinemaList: [],
-    loadingflag: true
+    loadingflag: true,
+    movieId: 0
 }
 CinemaList.propTypes = {
     cinemaList: PropTypes.array,
-    loadingflag: PropTypes.bool
+    loadingflag: PropTypes.bool,
+    movieId: PropTypes.number
 }
 export default withRouter(CinemaList);

@@ -16,11 +16,11 @@ class PayOrder extends React.Component {
                 <div className="movie-info">
                     <div className="info">
                         <div className="title">千与千寻</div>
-                        <div class="date">今天6月23日 20:10 (日语2D)</div>
-                        <div class="local">中影国际影城（长泰广场店） </div>
-                        <div class="seats">
+                        <div className="date">今天6月23日 20:10 (日语2D)</div>
+                        <div className="local">中影国际影城（长泰广场店） </div>
+                        <div className="seats">
                             3号厅(VIP气味王国厅)
-                        <div class="seat">7排7座</div>
+                        <div className="seat">7排7座</div>
                         </div>
                     </div>
                 </div>
@@ -36,8 +36,8 @@ class PayOrder extends React.Component {
                     <div className="box-flex">
                         <div>小计</div>
                         <div className="right-sel">
-                            <span class="icon">¥</span>
-                            <span class="paymoney">54</span>
+                            <span className="icon">¥</span>
+                            <span className="paymoney">54</span>
                         </div>
                     </div>
                 </div>
