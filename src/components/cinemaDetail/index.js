@@ -4,10 +4,11 @@ import './cinemaDetail.scss';
 import location from '../../assets/images/location.png';
 import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.css';
-import { Flex } from 'antd-mobile';
+import { Flex, Modal } from 'antd-mobile';
 import api from '../../utils/api';
 import { handleImg } from '../../utils/tool';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import store from '../../store';
 
 class CinemaDetail extends React.Component {
     constructor(props) {
@@ -52,9 +53,37 @@ class CinemaDetail extends React.Component {
             });
         });
     }
+    showAlert = (item) => {
+        let info = {
+            cinemaName: this.state.cinemaData.nm,
+            movieName: this.state.moviesFirst.nm,
+            movieImg: handleImg(this.state.moviesFirst.img),
+            date: item.dt,
+            time: item.tm,
+            th: item.th,
+            row: Math.floor(Math.random() * 15 + 1),
+            seat: Math.floor(Math.random() * 24 + 1),
+            tp: item.tp,
+            lang: item.lang
+        }
+        Modal.alert('提示', '仅供学习，不会产生任何费用！', [
+            { text: '取消', style: 'default' },
+            {
+                text: '确定', onPress: () => {
+                    let action = {
+                        type: 'orderMovieInfo',
+                        orderMovieInfo: info
+                    }
+                    store.dispatch(action);
+                    this.props.history.push('/payOrder');
+                }
+            },
+        ]);
+    }
     render() {
         let { cinemaData, movies, moviesFirst, shows, showsindex, plist } = this.state;
         let { sellPrice } = this.props;
+
         return (
             <div className="cinemaDetail">
                 <Header position="relative" title={cinemaData.nm} />
@@ -118,7 +147,7 @@ class CinemaDetail extends React.Component {
                         {
                             plist.map((item, index) => {
                                 return (
-                                    <Flex key={index} onClick={() => { this.props.history.push('/payOrder') }}>
+                                    <Flex key={index} onClick={this.showAlert.bind(this, item)}>
                                         <Flex.Item>
                                             <div className="begin">{item.tm}</div>
                                             <div className="end"></div>
