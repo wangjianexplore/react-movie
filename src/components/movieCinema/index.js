@@ -27,7 +27,7 @@ class MovieCinema extends React.Component {
   componentDidMount() {
     window.addEventListener('scroll', this.handleFixed, false);
     this.getDetailmovie();
-    this.getCinema(this.state.date, 0);
+    this.getCinema(this.state.date, 0, true);
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleFixed, false);

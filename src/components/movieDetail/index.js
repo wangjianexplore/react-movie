@@ -61,7 +61,7 @@ class MovieDetail extends React.Component {
                     </div>
                 </div>
                 <div className="purchase">
-                    <div className="pru-btn" onClick={() => { this.props.history.push('/movieCinema/' + detailMovie.id) }}>特惠购票</div>
+                    {detailMovie.onSale&&<div className="pru-btn" onClick={() => { this.props.history.push('/movieCinema/' + detailMovie.id) }}>特惠购票</div>}
                     <div className="intro">
                         <div className="content" style={{ maxHeight: this.state.arrowflag && 'none' }}>
                             <p>{detailMovie.dra}</p>
